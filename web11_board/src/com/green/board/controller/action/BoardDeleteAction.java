@@ -1,7 +1,6 @@
 package com.green.board.controller.action;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,19 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.green.board.dao.BoardDAO;
 import com.green.board.vo.BoardVO;
 
-public class BoardListAction implements Action { // 실제기능을 담당할 클래스
+public class BoardDeleteAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/board/boardList.jsp";
-		
 		BoardDAO dao = BoardDAO.getInstance();
-		List<BoardVO> boardList = dao.selectAllBoards();
+		int num = Integer.parseInt(request.getParameter("num"));
+//		System.out.println(num);
 		
-		request.setAttribute("boardList", boardList);
+		dao.deleteBoardByNum(num);
 		
-		request.getRequestDispatcher(url).forward(request, response);
-		
+		response.sendRedirect("BS?command=board_list");
 	}
 
 }
