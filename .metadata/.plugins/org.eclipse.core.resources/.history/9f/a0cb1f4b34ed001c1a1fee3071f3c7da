@@ -1,0 +1,7 @@
+package com.green.vo;
+
+public class CoffeeVO {
+	private String coffeeName;
+	private String coffeeType;
+	private int price;
+}

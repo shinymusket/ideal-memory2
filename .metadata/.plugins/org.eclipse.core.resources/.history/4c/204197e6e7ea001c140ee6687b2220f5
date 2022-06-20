@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품등록 페이지</title>
+</head>
+<body>
+	<h1>상품등록</h1>
+	<form action="productReg.jsp" method="Post">
+		<label for="name">상품명</label>
+		<input type="text" id="name" name="name"><br>
+		<label for="code">상품코드</label>
+		<input type="text" id="code" name="code"><br>
+		<label for="price">가격</label>
+		<input type="number" id="price" name="price"><br>
+		<label for="make">제조사</label>
+		<input type="text" id="make" name="make"><br>
+		<label for="material">주요원료</label>
+		<input type="text" id="material" name="material"><br>
+		<label for="soldout">품절여부(y/n)</label>
+		<input type="text" id="soldout" name="soldout"><br>
+		<input type="submit" value="등록">
+	</form>
+</body>
+</html>

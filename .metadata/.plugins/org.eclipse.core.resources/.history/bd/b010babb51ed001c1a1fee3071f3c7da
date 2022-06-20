@@ -1,0 +1,47 @@
+package com.green.file;
+
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/UploadServlet")
+public class UploadServlet extends HttpServlet {
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		String savePath = "\\upload";
+		
+		int uploadFileSize = 2*1024*1024;
+		
+		String encType = "UTF-8";
+		ServletContext context = getServletContext();
+		String uploadFilePath = context.getRealPath(savePath);
+		
+		String path = "c:\\fileTest";
+		
+		try {
+			MultipartRequest Multi = new MultipartRequest(
+					
+					
+					
+					
+					);
+					
+			
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+}
+
+}

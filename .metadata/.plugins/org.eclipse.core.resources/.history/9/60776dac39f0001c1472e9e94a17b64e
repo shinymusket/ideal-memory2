@@ -1,0 +1,6 @@
+package com.green.board.db;
+
+public class DBManager { // DB의 연결 및 해제를 담당할 기능을 가진 클래스
+	
+	public static Connection
+}

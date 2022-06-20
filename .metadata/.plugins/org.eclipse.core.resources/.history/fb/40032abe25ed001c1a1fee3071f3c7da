@@ -1,0 +1,7 @@
+package com.green.vo;
+
+public class MoiveVO {
+	private String movieCode;
+	private String movieName;
+	pirvate String MovieDirector;
+}

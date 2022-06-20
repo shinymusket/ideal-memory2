@@ -1,0 +1,52 @@
+package com.green.vo;
+
+public class CoffeeVO {
+	private String cName;
+	private String cCode;
+	private String cType;
+	private int price; 
+	
+	public String getcName() {
+		return cName;
+	}
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
+	public String getcCode() {
+		return cCode;
+	}
+	public void setcCode(String cCode) {
+		this.cCode = cCode;
+	}
+	public String getcType() {
+		return cType;
+	}
+	public void setcType(String cType) {
+		this.cType = cType;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public int getSubtotal() {
+		this.subtotal;
+		
+		return subtotal;
+	}
+	public void setSubtotal(int subtotal) {
+		this.subtotal = subtotal;
+	}
+	private int count;
+	private int subtotal;
+	
+	
+	
+}

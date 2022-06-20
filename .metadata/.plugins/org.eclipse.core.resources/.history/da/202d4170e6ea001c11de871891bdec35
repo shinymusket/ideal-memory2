@@ -1,0 +1,73 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>   
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%!
+	Connection conn = null;
+	PreparedStatement psmt = null;
+	
+	String url = "jdbc:oracle:thin:@localhost:1521:XE"; // 프로토콜 정보 : jdbc:oracle:thin:@~~~
+	String uId = "green";
+	String uPwd = "1234";
+	
+	int admin = 0;
+%>
+
+<%
+	request.setCharacterEncoding("UTF-8");	
+
+	String name = request.getParameter("name");
+	String code = request.getParameter("name");
+	String code = request.getParameter("name");
+	String code = request.getParameter("name");
+	String code = request.getParameter("name");
+	String code = request.getParameter("name");
+	
+
+
+
+
+	try {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+	
+		conn = DriverManager.getConnection(url, uId, uPwd);
+		
+		String sql =  "INSERT INTO member VALUES(?, ?, ?, ?, ?, ?)";
+		
+		psmt = conn.prepareStatement(sql);
+		
+		
+		psmt.setString(1, name);
+		psmt.setString(2, userid);
+		psmt.setString(3, userpwd);
+		psmt.setString(4, email);
+		psmt.setString(5, phone);
+		psmt.setInt(6, admin);
+	
+		int num = psmt.executeUpdate();
+		System.out.println("바뀐 행의 개수 : " + num); %>
+		
+		<h1>입력 성공!</h1>		
+<%	
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (psmt != null) psmt.close();
+			if (conn != null) conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+%>
+</body>
+</html>

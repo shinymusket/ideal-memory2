@@ -1,0 +1,108 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.green.dao.CoffeeDAO" %>
+<%@ page import="com.green.vo.CoffeeVO" %>          
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>카페 주문 프로그램</title>
+<style>
+	input {
+		margin-left:5px;
+	}
+	#cotainer {
+		width: 800px;
+		margin : 0 auto;
+	}
+	table {
+		margin-top: 20px;
+	}
+	#orderList {
+		width: 500px;
+	}
+	#sum {
+		margin-left : 330px;
+	}
+</style>
+</head>
+<body>
+<%
+	CoffeeDAO dao = CoffeeDAO.getInstance();
+	String[] menuList = dao.setMenuList();
+	pageContext.setAttribute("menuList", menuList);
+	
+%>
+<div id="cotainer">
+
+	<h2>카페 주문 프로그램</h2>
+	<form action="CR" method="post">
+		<select name="cName">
+			<c:forEach var="data" items="${menuList}">
+				<option value="${data}">${data}</option>
+			</c:forEach>
+		</select>	
+	
+		<select name="cType">
+			<option value="tall">톨</option>
+			<option value="grande">그란데</option>
+			<option value="venti">벤티</option>
+		</section>
+		<input type="number" name="count" min="1">잔
+		<input type="submit" value="선택">
+	</form>	
+	<c:if test="${coffeeList.size() > 0}">
+		
+		<table border="1" id="orderList">
+			<tr>
+				<th>커피</th>
+				<th>타입</th>
+				<th>가격</th>
+				<th>개수</th>
+				<th>합계</th>
+			</tr>
+		
+		
+<% 
+	ArrayList<CoffeeVO> coffeeList = new ArrayList<>();
+	CoffeeVO cVo = new CoffeeVO();
+	coffeeList = (ArrayList<CoffeeVO>) session.getAttribute("coffeeList");
+	
+	for (int i = 0; i < coffeeList.size(); i++) {
+		out.println("<tr>");
+		out.println("<td>"+ coffeeList.get(i).getcName() + "</td>");
+		out.println("<td>"+ coffeeList.get(i).getcType() + "</td>");
+		out.println("<td>"+ coffeeList.get(i).getPrice() + "</td>"); //
+		out.println("<td>"+ coffeeList.get(i).getCount() + "</td>");  
+		out.println("<td>"+ coffeeList.get(i).getSubtotal() + "</td>"); //
+		out.println("</tr>");
+	}
+	
+	
+%>	
+		</table>
+	<table border="1" id="sum">
+<% 	
+	int totalPrice = 0;
+	for (int i = 0; i < coffeeList.size(); i++) {
+		totalPrice = totalPrice + coffeeList.get(i).getSubtotal();
+	}
+		out.println("<tr>");
+		out.println("<td>최종합산가격</td>");
+		out.println("<td>");
+		out.println(totalPrice);
+		out.println("</td>");
+		out.println("</tr>");
+		
+%>		
+	</table>
+	<form action="" method="get">
+		<input type="submit" value="비우기">
+	</form>
+	</c:if>
+</div>	
+	
+</body>
+</html>

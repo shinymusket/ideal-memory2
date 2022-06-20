@@ -1,0 +1,55 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>    
+<%! 
+	String[] tdList = new String[10];
+%>    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	response.setContentType("text/html;charset=UTF-8");
+	request.setCharacterEncoding("UTF-8");
+	String td = request.getParameter("toDo");
+	
+	if (tdList.length == 0) {
+		tdList[i] = td;
+	}
+	
+	
+	for (int i = 0; i < tdList.length; i++) {
+		if (tdList[i].equals(null)) {
+			tdList[i] = td;
+		}
+	}
+	
+	if (tdList.length > 0) {
+		int index = (int) request.getAttribute("index");
+		tdList[index] = null;
+	}
+	
+	
+%>
+<ul>
+
+
+<%	
+	for (int i = 0; i < tdList.length; i++ ) {
+%>
+
+	<li><%=tdList[i]%> <a href="DeleteList?index=<%=i%>"><button type="button">삭제</button></a></li>
+<%			
+	}
+%>
+</ul>
+<a href="q4.html"><input type="button" value="할 일 기록"></a>
+</body>
+
+<%
+	session.setAttribute("tdList", tdList);
+%>
+</html>

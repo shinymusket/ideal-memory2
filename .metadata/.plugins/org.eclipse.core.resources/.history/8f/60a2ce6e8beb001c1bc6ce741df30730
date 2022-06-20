@@ -1,0 +1,36 @@
+package com.green.question;
+
+import java.io.IOException;
+import java.sql.PreparedStatement;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sun.corba.se.pept.transport.Connection;
+
+
+@WebServlet("/MIIS")
+public class MemberInfoInsertServlet extends HttpServlet {
+	
+	Connection conn = null;
+	PreparedStatement psmt = null;
+	
+	private String url = "jdbc:oracle:thin:@localhost:1521:XE"; // 프로토콜 정보 : jdbc:oracle:thin:@~~~
+	private String uId = "green";
+	String uPwd = "1234";
+	
+	int admin = 0;
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+}

@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>커피 메뉴 선택 페이지</title>
+</head>
+<body>
+	<h2>커피 메뉴 선택 페이지</h2>
+	<form action="CMS" method="post">
+		<select name="coffeeName">
+			<c:forEach items="${cNames}" var="cName">
+				<option value="${cName}">${cName}</option>
+			
+			</c:forEach>
+						
+		</select>
+		<select name="coffeeType">
+			<option value="톨">톨</option>
+			<option value="그란데">그란데</option>
+			<option value="벤티">벤티</option>
+		</select>
+		<input type="number" name="coffeeCount" min="1" max="100" value="0"> 잔
+		<input type="submit" value="선택">
+	</form>
+	<hr>
+<!-- 13단계  -->
+<form action="">
+	<input type="submit" value="초기화">
+</form>
+
+	
+	<table border="1">
+		<tr>
+			<th>커피</th>
+			<th>타입</th>
+			<th>가격</th>
+			<th>개수</th>
+			<th>합계</th>
+		</tr>
+		<tr>
+<%-- 			<th>${coffeeName}</th>
+			<th>${coffeeType}</th>
+			<th>${price}</th>
+			<th>${count}</th>
+			<th>${total}</th> --%>
+			
+<%-- 			<td>${coffeeInfo.coffeeName}</td>
+			<td>${coffeeInfo.coffeeType}</td>
+			<td>${coffeeInfo.price}</td>
+			<td>${coffeeInfo.count}</td>
+			<td>${coffeeInfo.sum}</td>	<!-- VO객체의 필드명이 아니고, get메서드의 이름 getSum() --> --%>
+		
+	
+		<c:forEach items="${coffeeList}" var="coffeeInfo">
+		<tr>
+			<td>${coffeeInfo.coffeeName}</td>
+			<td>${coffeeInfo.coffeeType}</td>
+			<td>${coffeeInfo.price}</td>
+			<td>${coffeeInfo.count}</td>
+			<td>${coffeeInfo.sum}</td>
+		 </tr>
+		</c:forEach>
+	
+
+	</table>
+</body>
+</html>

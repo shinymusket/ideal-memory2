@@ -1,0 +1,44 @@
+package com.green.product.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.green.product.vo.ProductVO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+
+@WebServlet("/productWrite")
+public class ProductWriteServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 입력 폼을 보여줄 메서드
+		request.getRequestDispatcher("product/productWrite.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+		try {
+			MultipartRequest multi = new MultipartRequest(
+						request,
+						"upload",
+						100*1024*1024,
+						"UTF-8",
+						new DefaultFileRenamePolicy()
+					);
+
+			ProductVO pVo = new ProductVO();
+			pVo.setName);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

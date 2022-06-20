@@ -1,0 +1,17 @@
+package com.green.board.dao;
+
+import java.util.List;
+
+import com.green.board.vo.BoardVO;
+
+public class BoardDAO {
+	private BoardDAO() {}
+	private static BoardDAO dao = new BoardDAO();
+	public static BoardDAO getInstance() {
+		return dao;
+	}
+	
+	public List<BoardVO> selectAllBoards() {
+		String sql = "SELECT * FROM boardTbl ORDER BY num DESC";
+	}
+}

@@ -1,0 +1,44 @@
+package com.green.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.green.dao.MovieDAO;
+import com.green.vo.MovieVO;
+
+@WebServlet("/MR")
+public class MovieReg extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("movieRegister.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String movieName = request.getParameter("MovieName");
+		String movieDirector = request.getParameter("MovieDirector");
+		String leadingActor = request.getParameter("LeadingActor");
+		int moviePrice = Integer.parseInt(request.getParameter("MoviePrice"));
+		String stillCutPath = request.getParameter("StillCutPath");
+		Double grade = Double.parseDouble(request.getParameter("grade"));
+		
+		MovieDAO dao = MovieDAO.getInstance();
+		MovieVO mVo = new MovieVO();
+		
+		mVo.setMovieName(movieName);
+		mVo.setMovieDirector(movieDirector);
+		mVo.setLeadingActor(leadingActor);
+		mVo.setMoviePrice(moviePrice);
+		mVo.setStillCutPath(stillCutPath);
+		mVo.setGrade(grade);
+		
+		dao.regMovie(mVo);
+		response.sendRedirect("");
+	}
+
+}

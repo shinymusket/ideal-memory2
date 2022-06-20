@@ -1,0 +1,5 @@
+package com.green.board.dao;
+
+public class BoardDAO {
+
+}

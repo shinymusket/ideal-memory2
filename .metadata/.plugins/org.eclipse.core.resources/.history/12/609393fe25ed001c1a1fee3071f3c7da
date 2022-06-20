@@ -1,0 +1,11 @@
+package com.green.vo;
+
+public class MoiveVO {
+	private String movieCode;
+	private String movieName;
+	private String movieDirector;
+	private String leadingActor;
+	private int moviePrice;
+	private String stillCutPath;
+	private int grade;
+}

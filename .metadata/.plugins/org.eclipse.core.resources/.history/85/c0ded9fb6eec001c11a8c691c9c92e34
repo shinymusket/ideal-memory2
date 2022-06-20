@@ -1,0 +1,47 @@
+package com.green.file;
+
+import java.io.IOException;
+import java.util.Enumeration;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+@WebServlet("/MultiUploadServlet")
+public class MultiUploadServlet extends HttpServlet {
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		String uploadPath = "c:\\fileTest";
+		int uploadFileSize = 10*1024*1024; // 합계 파일 사이즈
+		String encType = "UTF-8";
+		
+		try {
+			MultipartRequest mul = new MultipartRequest(request, uploadPath, uploadFileSize, encType, new DefaultFileRenamePolicy());
+				if(mul == null) {
+					System.out.println("업로드 실패");
+				} else {
+					System.out.println("업로드 성공");
+				}
+				
+				Enumeration<String> fileName= mul.getFileNames(); // 파일 이름들을 배열 형태로 가져온다.
+				
+				while(fileName.hasMoreElements()) {
+					String file = fileName.nextElement(); // 파일 이름 X => name 이름 : uploadFile01
+					mul.getFilesystemName(file); // name 이름으로 실제 파일 이름 알아오기
+				}
+				
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

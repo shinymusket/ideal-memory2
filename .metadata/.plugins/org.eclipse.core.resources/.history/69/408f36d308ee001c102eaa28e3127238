@@ -1,0 +1,206 @@
+package com.green.product.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import com.green.product.vo.ProductVO;
+
+public class ProductDAO {
+	
+	private ProductDAO() {}
+	private static ProductDAO dao = new ProductDAO();
+	public static ProductDAO getInstance() {
+		return dao;
+	}
+	
+	// 연결을 위한 메서드
+	public Connection getConnection() throws Exception {
+		Connection conn = null;
+		Context initContext = new InitialContext();
+		Context envContext  = (Context)initContext.lookup("java:/comp/env");
+		DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+		conn = ds.getConnection();
+		
+		return conn;
+	}
+	
+	// 연결 해제를 위한 메서드 - INSERT, UPDATE, DELETE
+	public void close(Connection conn, Statement stmt) {
+		try {
+			if (stmt != null) stmt.close();
+			if (conn != null) conn.close();			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 연결 해제를 위한 메서드 - SELECT
+	public void close(Connection conn, Statement stmt, ResultSet rs) {
+		try {
+			if (rs != null) rs.close();	
+			if (stmt != null) stmt.close();
+			if (conn != null) conn.close();			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 전체 상품 정보를 읽어오는 메서드
+	public List<ProductVO> selectAllProduct() {
+		List<ProductVO> list = new ArrayList<>(); 
+		
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM productTbl ORDER BY code DESC";
+		
+		
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				ProductVO pVo = new ProductVO();
+				pVo.setCode(rs.getInt("code"));
+				pVo.setName(rs.getString("name"));
+				pVo.setPrice(rs.getInt("price"));
+				pVo.setPictureurl(rs.getString("pictureurl"));
+				pVo.setDescription(rs.getString("description"));
+				
+				list.add(pVo);
+			}
+			
+			
+			
+			
+		} catch(Exception e ) {
+			e.printStackTrace();
+		} finally {
+			close(conn, stmt, rs);
+		}
+		
+		
+		
+		
+		
+		return list;
+	}
+
+	public void insertProduct(ProductVO pVo) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		String sql = "INSERT INTO productTbl VALUES(PRODUCT_SEQ.nextval, ?, ?, ?, ?)";
+		
+		try {
+			conn = getConnection();
+			
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, pVo.getName());
+			psmt.setInt(2, pVo.getPrice());
+			psmt.setString(3, pVo.getPictureurl());
+			psmt.setString(4, pVo.getDescription());
+			
+			psmt.executeUpdate();
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, psmt);
+		}
+	}
+
+	public void deleteProduct(int code) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		String sql = "DELETE FROM productTbl WHERE code=?";
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setInt(1, code);
+			psmt.executeUpdate();
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, psmt);
+		}
+	}
+
+	public ProductVO selectProductByCode(int code) {
+		ProductVO pVo = new ProductVO();
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM productTbl WHERE code=?";
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setInt(1, code);
+			
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				String name = rs.getString("name");
+				int price  = rs.getInt("price");
+				String pictureurl = rs.getString("pictureurl");
+				String description = rs.getString("description");
+				
+				pVo.setName(name);
+				pVo.setPrice(price);
+				pVo.setPictureurl(pictureurl);
+				pVo.setDescription(description);
+				pVo.setCode(code);
+			}
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, psmt, rs);
+		}
+		
+		
+		return pVo;
+	}
+
+	public void updateProduct(ProductVO pVo) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		String sql = "UPDATE SET WHERE code=?";
+		
+		try {
+			conn = getConnection();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, psmt);
+		}
+		
+	}
+	
+}

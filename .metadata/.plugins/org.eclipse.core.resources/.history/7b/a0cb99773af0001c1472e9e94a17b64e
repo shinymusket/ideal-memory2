@@ -1,0 +1,7 @@
+package com.green.board.dao;
+
+public class BoardDAO {
+	private BoardDAO() {}
+	private static BoardDAO dao = new BoardDAO();
+	
+}

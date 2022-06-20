@@ -1,0 +1,9 @@
+#Tomcat publish data
+#Mon Jun 20 11:26:05 KST 2022
+org.eclipse.jst.jee.server\:homework04=C\:\\javastudy\\apache-tomcat-8.5.79\\apache-tomcat-8.5.79\\wtpwebapps\\homework04
+org.eclipse.jst.jee.server\:web11_board=C\:\\javastudy\\apache-tomcat-8.5.79\\apache-tomcat-8.5.79\\wtpwebapps\\web11_board
+org.eclipse.jst.jee.server\:web10_product=C\:\\javastudy\\apache-tomcat-8.5.79\\apache-tomcat-8.5.79\\wtpwebapps\\web10_product
+org.eclipse.jst.jee.server\:web10=C\:\\javastudy\\apache-tomcat-8.5.79\\apache-tomcat-8.5.79\\wtpwebapps\\web10
+org.eclipse.jst.jee.server\:web09=C\:\\javastudy\\apache-tomcat-8.5.79\\apache-tomcat-8.5.79\\wtpwebapps\\web09
+org.eclipse.jst.jee.server\:homework10=C\:\\javastudy\\apache-tomcat-8.5.79\\apache-tomcat-8.5.79\\wtpwebapps\\homework10
+org.eclipse.jst.jee.server\:homework08=C\:\\javastudy\\apache-tomcat-8.5.79\\apache-tomcat-8.5.79\\wtpwebapps\\homework08

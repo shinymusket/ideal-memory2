@@ -1,0 +1,82 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>    
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품 목록</title>
+</head>
+<body>
+<%!
+	// 데이터베이스 접속 준비 => 연결이 종료되면 모두 닫아 주어야 함.
+	Connection conn = null; // DB 연결용 객체
+	Statement stmt = null; // 쿼리 전송용 객체
+	ResultSet rs = null; // 조회된 데이터를 저장하기 위한 객체
+	
+	// 접속을 위한 정보 5가지
+	String url = "jdbc:oracle:thin:@localhost:1521:XE"; // 프로토콜 정보 : jdbc:oracle:thin:@~~~
+	String uId = "green";
+	String uPwd = "1234";
+	
+%>
+<h1>상품 목록</h1>
+<table border="1">
+	<tr>
+		<th>상품명</th>
+		<th>상품코드</th>
+	</tr>
+<%
+	try {
+	
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	conn = DriverManager.getConnection(url, uId, uPwd);
+	stmt = conn.createStatement();
+	String query = "SELECT * product";
+	rs = stmt.executeQuery(query);
+	
+	while (rs.next()) { 
+		
+		String name = rs.getString("name");
+		String code = rs.getString("code");
+		request.setAttribute("code", code);
+		
+		out.println("<tr>");
+		out.println("<td>"+ name + "</td>");		
+		out.println("<td>"); %>
+		<%-- <a href="ProductSearch?code=${code}"> --%>
+		out.println("</td>");
+		<!-- </a> -->
+<% 		out.println("</td>");
+		out.println("</tr>");
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+%>	
+	
+	<a href="productRegForm.html">
+		<button type="button">상품등록</button>
+	</a>
+</body>
+</html>

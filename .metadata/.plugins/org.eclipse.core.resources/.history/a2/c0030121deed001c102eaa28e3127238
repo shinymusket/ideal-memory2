@@ -1,0 +1,5 @@
+package com.green.product.vo;
+
+public class ProductVO {
+	
+}

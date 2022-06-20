@@ -1,0 +1,31 @@
+package com.green.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.green.dao.MemberDAO;
+import com.green.vo.MemberVO;
+
+
+@WebServlet("/MUS")
+public class MemberUpdateServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userid = request.getParameter("userid");
+		
+		// 세션에 저장된 정보를 활용 가능
+		
+		MemberDAO dao = MemberDAO.getInstance();
+		MemberVO mVo = dao.getMember(userid); // id를 통해 회원의 정보 가져오기
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+}

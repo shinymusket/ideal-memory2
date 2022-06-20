@@ -1,0 +1,5 @@
+package com.green.board.controller;
+
+public class ActionFactory { // 요청을 기능으로 연결시켜줄 클래스
+	
+}

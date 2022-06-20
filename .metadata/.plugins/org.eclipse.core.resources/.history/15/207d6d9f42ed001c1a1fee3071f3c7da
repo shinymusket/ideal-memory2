@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상세 영화 정보 페이지</title>
+</head>
+<body>
+	<h2>상세 영화 정보</h2>
+	<table>
+		<tr>
+			<th>영화 제목</th>
+			<th>영화 감독</th>
+			<th>주연 배우</th>
+			<th>가격</th>
+			<th>스틸컷</th>
+			<th>평점</th>
+		</tr>
+		<tr>
+			<td>${movie.movieName}</td>
+			<td>${movie.movieDirector}</td>
+			<td>${movie.leadingActor}</td>
+			<td>${movie.moviePrice}</td>
+			<td>${movie.stillCutPath}</td>
+			<td>${movie.grade}</td>
+		</tr>
+		<tr>
+			<td colspan="6">
+				<input type="submit" vaule="삭제"> 
+				<input type="submit" vaule="삭제"> 
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

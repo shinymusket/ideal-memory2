@@ -1,0 +1,13 @@
+package com.green.board.vo;
+
+public class BoardVO {
+	
+    int num;
+    String pass;
+    String name;
+    String email;
+    String title;
+    String content;
+    int readCount;
+    Timestamp writeDate;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품 목록 리스트</title>
+</head>
+<body>
+	<h1>상품 목록 리스트</h1>
+	<form action="process.jsp" method="post">
+		<ul>
+			<li>연필 <input type="number" name="pencil" value="1"></li>
+			<li>지우개<input type="number" name="erase" value="0"></li>
+			<li>필통<input type="number" name="pencilcase" value="0"></li>
+			<li>볼펜<input type="number" name="ballpen" value="0"></li>
+			<li>자<input type="number" name="ruler" value="0"></li>
+			<li>커터칼<input type="number" name="boxCutter" value="0"></li>
+			<li>스테이플러<input type="number" name="stapler" value="0"></li>
+			<input type="submit" value="장바구니 담기">
+		</ul>
+	</form>
+</body>
+</html>

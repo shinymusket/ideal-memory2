@@ -1,0 +1,5 @@
+package com.green.board.controller.action;
+
+public class BoardListAction {
+
+}

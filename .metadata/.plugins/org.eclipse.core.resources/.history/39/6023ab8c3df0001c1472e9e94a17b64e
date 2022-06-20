@@ -1,0 +1,11 @@
+package com.green.board.controller;
+
+public class ActionFactory { // 요청을 기능으로 연결시켜줄 클래스
+	private ActionFactory() {}
+	private static ActionFactory af = new ActionFactory();
+	public static ActionFactory getInstance() {
+		return af;
+	}
+	
+	
+}

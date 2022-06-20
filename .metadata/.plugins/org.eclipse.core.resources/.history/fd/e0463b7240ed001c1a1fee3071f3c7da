@@ -1,0 +1,157 @@
+package com.green.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import com.green.vo.MovieVO;
+
+import oracle.jdbc.proxy.annotation.GetCreator;
+
+
+public class MovieDAO {
+	private MovieDAO() {}
+	private static MovieDAO dao = new MovieDAO();
+	public static MovieDAO getInstance() {
+		return dao;
+	}
+	
+	public Connection getConnection() throws Exception {
+		Connection conn = null;
+		Context initContext = new InitialContext();
+		Context envContext  = (Context)initContext.lookup("java:/comp/env");
+		DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+		conn = ds.getConnection();
+		
+		return conn;
+	}
+	
+	// 1. 영화 목록을 가져오는 메서드
+	public ArrayList<MovieVO> getMoiveList() {
+		ArrayList<MovieVO> movieList = new ArrayList<>();
+			
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM MovieInfoTbl";
+		
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				MovieVO mVo = new MovieVO();
+				String movieCode = rs.getString("MovieCode");
+				String movieName = rs.getString("MovieName");
+				String movieDirector = rs.getString("MovieDirector");
+				String leadingActor = rs.getString("LeadingActor");
+				int moviePrice = Integer.parseInt(rs.getString("MoviePrice"));
+				String stillCutPath = rs.getString("StillCutPath");
+				Double grade = rs.getDouble("grade");
+				
+				mVo.setMovieCode(movieCode);
+				mVo.setMovieName(movieName);
+				mVo.setMovieDirector(movieDirector);
+				mVo.setLeadingActor(leadingActor);
+				mVo.setMoviePrice(moviePrice);
+				mVo.setStillCutPath(stillCutPath);
+				mVo.setGrade(grade);
+				
+				movieList.add(mVo);
+			}
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (stmt != null) stmt.close();
+				if (conn != null) conn.close();
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return movieList;
+	}
+	
+	// 2. 영화를 등록하는 메서드
+	public void regMovie(MovieVO mVo) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		String sql = "INSERT INTO MovieInfoTbl VALUES (MCODE_SEQ.nextval, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, mVo.getMovieName());
+			psmt.setString(2, mVo.getMovieDirector());
+			psmt.setString(3, mVo.getLeadingActor());
+			psmt.setInt(4, mVo.getMoviePrice());
+			psmt.setString(5, mVo.getStillCutPath());
+			psmt.setDouble(6, mVo.getGrade());
+		
+			psmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (psmt != null) psmt.close();
+				if (conn != null) conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+	
+	// 3. 영화 코드로 정보 가져오기
+	public MovieVO getMovieInfo(String movieCode) {
+		MovieVO mVo = new MovieVO();
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM MovieInfoTbl WHERE moviecode=?";
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mVo.getMovieName());
+			
+			
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (psmt != null) psmt.close();
+				if (conn != null) conn.close();
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return mVo;
+	}
+
+}

@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>   
+
+<%! 
+	
+%>
+    
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품 목록</title>
+</head>
+<body>
+<h1>상품 목록</h1>
+<%-- <jsp:useBean id="p1" class="beans.Product" scope="request"></jsp:useBean>
+<jsp:setProperty name="p1" property="*" /> --%>
+<%	
+	request.setCharacterEncoding("UTF-8"); 
+	String name = request.getParameter("name");
+	String code = request.getParameter("code");
+	String price = request.getParameter("price");
+	String make = request.getParameter("make");
+	String material = request.getParameter("material");
+	String soldout = request.getParameter("soldout");
+	
+	Product p1 = new Product();
+	p1.setName(name);
+	p1.setCode(code);
+	p1.setPrice(price);
+	p1.setMake(make);
+	p1.setMaterial(material);
+	p1.setSoldout(soldout);
+	
+	request.setAttribute("p1", p1);
+
+%>
+	<jsp:forward page="productList.jsp"/>
+
+</body>
+</html>

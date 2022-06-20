@@ -1,0 +1,58 @@
+package com.green.servlet;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.green.vo.ProductVO;
+
+@WebServlet("/PRS")
+public class ProductRegServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
+		ArrayList<ProductVO> productList = new ArrayList<>();
+		session.setAttribute("productList", productList);
+		response.sendRedirect("productReg.jsp");
+		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
+		ArrayList<ProductVO> productList = (ArrayList<ProductVO>) session.getAttribute("productList");
+		
+		request.setCharacterEncoding("UTF-8");
+		String name = request.getParameter("name");
+		String code = request.getParameter("code");
+		int price = Integer.parseInt(request.getParameter("price"));
+		String manufacturer = request.getParameter("manufacturer");
+		String material = request.getParameter("material");
+		String soldout = request.getParameter("soldout");
+		ProductVO pVo = new ProductVO();
+		
+		pVo.setName(name);
+		pVo.setCode(code);
+		pVo.setPrice(price);
+		pVo.setManufacturer(manufacturer);
+		pVo.setMaterial(material);
+		pVo.setSoldout(soldout);
+		pVo.setSoldout(soldout);
+		
+		productList.add(pVo);
+		
+		session.setAttribute("productList", productList);
+		response.sendRedirect("PLS");
+		
+		
+	}
+
+}

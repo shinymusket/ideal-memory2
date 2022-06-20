@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>한꺼번에 다수의 파일을 업로드</title>
+</head>
+<body>
+	<h2>한꺼번에 다수의 파일을 업로드</h2>
+	<form action="" method="post" enctype="application/x-www-form-urlencoded">
+		
+	
+	</form>
+</body>
+</html>

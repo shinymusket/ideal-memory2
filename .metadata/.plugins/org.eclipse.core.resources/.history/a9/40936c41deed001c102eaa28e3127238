@@ -1,0 +1,6 @@
+package com.green.product.vo;
+
+public class ProductVO {
+	private int code;
+	private String name;
+}

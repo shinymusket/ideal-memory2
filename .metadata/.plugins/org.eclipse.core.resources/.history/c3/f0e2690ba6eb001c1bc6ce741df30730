@@ -1,0 +1,32 @@
+package com.green.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/LS")
+public class LoginServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 폼페이지로 연결
+		String url = "member/login.jsp";
+		
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 입력받은 데이터를 처리
+		request.setCharacterEncoding("UTF-8");
+		
+		String userid = request.getParameter("userid");
+		String userpwd = request.getParameter("userpwd");
+		
+		// 로그인 인증 처리
+		
+	}
+
+}

@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품 등록 페이지 - 관리자 페이지</title>
+<link type="text/css" href="style/product.css" rel="stylesheet">
+</head>
+<body>
+	<div id="wrap" align="center">
+		<form action="productWrite" method="post" enctype="multipart/form-data">
+			<table>
+				<tr>
+					<th></th>
+					<td>
+				
+				</tr>
+			
+			</table>
+		
+		
+		
+		</form>
+	</div>
+</body>
+</html>

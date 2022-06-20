@@ -1,0 +1,11 @@
+package com.green.vo;
+
+public class CoffeeVO {
+	private String cName;
+	private String cCode;
+	private String cType;
+	private int count;
+	private int subtotal;
+	
+	
+}

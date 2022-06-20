@@ -1,0 +1,12 @@
+package web09;
+
+public class MemberVO {
+	private String name;
+	private String userid;
+	private String userpwd;
+	private String email;
+	private String phone;
+	private int admin;
+	
+	
+}

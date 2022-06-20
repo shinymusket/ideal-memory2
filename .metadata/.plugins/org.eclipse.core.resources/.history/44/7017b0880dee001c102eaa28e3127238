@@ -1,0 +1,73 @@
+package com.green.product.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.green.product.dao.ProductDAO;
+import com.green.product.vo.ProductVO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+
+@WebServlet("/productUpdate")
+public class ProductUpdateServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int code = Integer.parseInt(request.getParameter("code"));
+		
+		ProductDAO dao = ProductDAO.getInstance();
+		ProductVO pVo = dao.selectProductByCode(code);
+		
+		request.setAttribute("productVO", pVo);
+		
+		request.getRequestDispatcher("product/productUpdate.jsp").forward(request, response);
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+		try {
+			MultipartRequest multi = new MultipartRequest(
+					request,
+					"c:\\upload",
+					100*1024*1024,
+					"UTF-8",
+					new DefaultFileRenamePolicy()		
+					);
+			int code = Integer.parseInt(multi.getParameter("code"));
+			String name = multi.getParameter("name");
+			int price = Integer.parseInt(multi.getParameter("price"));
+			String pictureurl = multi.getFilesystemName("pictureurl"); // null로 넘어옴
+//			System.out.println(pictureurl);
+			String description = multi.getParameter("description");
+			
+			if(pictureurl == null) { // 사진 업로드를 안한 경우, 기존의 이미지를 그대로 사용
+				pictureurl = multi.getParameter("originPicureUrl");
+			}
+			
+			ProductVO pVo = new ProductVO();
+			pVo.setCode(code);
+			pVo.setName(name);
+			pVo.setPrice(price);
+			pVo.setPictureurl(pictureurl);
+			pVo.setDescription(description);
+			
+			ProductDAO dao = ProductDAO.getInstance();
+			dao.updateProduct(pVo);
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} 
+		
+		response.sendRedirect("productList");
+		
+	}
+
+}

@@ -1,0 +1,6 @@
+package com.green.vo;
+
+public class MemberVO {
+	private String name;
+	private String korScore;
+}
