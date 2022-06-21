@@ -20,7 +20,7 @@ public class BoardDAO {
 	public List<BoardVO> selectAllBoards() {
 		String sql = "SELECT * FROM boardTbl ORDER BY num DESC";
 		
-		List<BoardVO> List = new ArrayList<>();
+		List<BoardVO> list = new ArrayList<>();
 		
 		Connection conn = null;
 		Statement stmt = null;
@@ -43,7 +43,7 @@ public class BoardDAO {
 				bVo.setReadCount(rs.getInt("readcount"));
 				bVo.setWriteDate(rs.getTimestamp("writedate"));
 				
-				List.add(bVo);
+				list.add(bVo);
 			}
 			
 		} catch(Exception e) {
@@ -52,7 +52,7 @@ public class BoardDAO {
 			DBManager.close(conn, stmt, rs);
 		}
 			
-		return List;
+		return list;
 	}
 
 	public void insertBoard(BoardVO bVo) {
@@ -199,4 +199,88 @@ public class BoardDAO {
 		}
 		
 	}
+	
+	// 페이지, 섹션 정보를 통해서 해당 페이지 게시글 읽어오기
+	public List<BoardVO> selectTargetBoards(int section, int page) {
+		List<BoardVO> list = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM " + 
+				" (SELECT ROWNUM as nick, num, name, email, pass, title, content, readcount, writedate FROM " + 
+				" (SELECT * FROM boardTbl ORDER BY num DESC)) " + 
+				" WHERE nick BETWEEN (?-1)*100+(?-1)*10+1 AND (?-1)*100+?*10 ";
+		
+		try {
+			conn = DBManager.getConnection();
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setInt(1, section);
+			psmt.setInt(2, page);
+			psmt.setInt(3, section);
+			psmt.setInt(4, page);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardVO bVo = new BoardVO();
+				
+				bVo.setNum(rs.getInt("num"));
+				bVo.setName(rs.getString("name"));
+				bVo.setEmail(rs.getString("email"));
+				bVo.setPass(rs.getString("pass"));
+				bVo.setTitle(rs.getString("title"));
+				bVo.setContent(rs.getString("content"));
+				bVo.setReadCount(rs.getInt("readcount"));
+				bVo.setWriteDate(rs.getTimestamp("writedate"));
+				
+				list.add(bVo);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, psmt, rs);
+		}
+		
+
+		return list;
+	}
+	
+	// 전체 게시글의 개수를 알아오는 쿼리
+	public int selectAllBoardNumber() {
+		int cntAll = 0;
+		
+		String sql="SELECT COUNT(*) FROM boardTbl";
+		
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				cntAll = rs.getInt(1);
+			}
+			
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, stmt, rs);
+		}
+		
+		
+		return cntAll;
+	}
+	
+	
 }

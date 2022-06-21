@@ -28,3 +28,15 @@ VALUES(BOARD_SEQ.nextval, '박길동', 'park@naver.com', '1234', '밥은 먹었�
 commit;
 
 SELECT * FROM boardTbl;
+
+---------------------------------------------------------------------------------------------------
+
+DECLARE
+    i NUMBER := 1;
+
+BEGIN
+    FOR i in 1..1000 LOOP
+        INSERT INTO boardTbl (num, name, pass, email, title, content) 
+        VALUES(BOARD_SEQ.nextval, 'name'||i, '1234', 'E'||i||'@naver.com', 'title'||i, 'content'||i); 
+    END LOOP;
+END;
