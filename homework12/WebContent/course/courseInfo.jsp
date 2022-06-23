@@ -7,16 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>교과목 상세보기</title>
+<script src="./jQuery/jquery-3.6.0.js" type="text/javascript"></script>
 <link type="text/css" rel="stylesheet" href="css/course.css">
 </head>
 <body>
 <%@ include file="/header/header.jsp" %>
+		<form action="" name="frm">
+			<input type="hidden" name="id" value="${course.id}">
+		</form>
 	<div id="wrap" align="center">
 		<h2>교과목 상세보기</h2>
 		<table>
 			<tr>
 				<th>교과목 코드</th>
-				<td>${course.id}</td>
+				<td id="id">${course.id}</td>
 			</tr>
 			<tr>
 				<th>과목 명</th>
@@ -47,10 +51,33 @@
 				</td>
 			</tr>
 		</table>
-		<input type="button" value="수정">
-		<input type="button" value="삭제">
+		
+		<input type="button" value="수정" onclick="location.href='CS?command=course_update_form&id=${course.id}'">
+		<button id="btn" type="button" onclick="del()">삭제</button>
 		<input type="button" value="목록" onclick="location.href='CS?command=course_list'">
 	</div>
 <%@ include file="/footer/footer.jsp" %>
 </body>
+<script type="text/javascript">
+	
+	
+	
+	function del() {
+		var result = confirm("삭제하시겠습니까?");
+		if (result == true) {
+			url = "CS?command=delete_course&id="+document.frm.id.value;
+			location.replace(url);
+			
+			// document.write('삭제!');
+			// location.href = LinkTest;
+			// "CS?command=deleteCourse&id="+document.frm.id.value
+		} else {
+			
+		}
+	}
+
+
+
+
+</script>
 </html>

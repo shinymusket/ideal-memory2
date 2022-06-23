@@ -279,4 +279,53 @@ public class CourseDAO {
 		
 		return cVo;
 	}
+
+	public void updateCourse(CourseVO cVo) { // 아이디로 교과목 수정하기
+		String sql = "UPDATE course_tbl SET name=?, lecturer=?, credit=?, week=?, start_hour=?, end_hour=? WHERE id=?";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		try {
+			conn = DBManager.getConnetion();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, cVo.getName());
+			psmt.setInt(2, dao.selectLecturerNumByName(cVo.getLecturer()));
+			psmt.setInt(3, cVo.getCredit());
+			psmt.setInt(4, dao.selectWeekNumByName(cVo.getWeek()));
+			psmt.setInt(5, cVo.getStartHour());
+			psmt.setInt(6, cVo.getEndHour());
+			psmt.setString(7, cVo.getId());
+			
+			psmt.executeUpdate();
+		
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, psmt);
+		}
+		
+		
+	}
+
+	public void deleteCourseById(String id) {
+		String sql = "DELETE FROM course_tbl WHERE id=?";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		try {
+			conn = DBManager.getConnetion();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			
+			psmt.executeUpdate();
+			
+		} catch(Exception e ) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, psmt);
+		}
+	}
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>강의 목록</title>
+<title>교과목 등록</title>
 <link type="text/css" rel="stylesheet" href="css/course.css">
 </head>
 <body>
@@ -20,7 +20,7 @@
 				<tr>
 					<th>교과목 코드</th>
 					<td>
-						<input type="text" name="id">
+						<input type="text" name="id" required="required">
 					</td>
 				</tr>
 				<tr>
@@ -32,7 +32,8 @@
 				<tr>
 					<th>담당 강사</th>
 					<td>
-						<select name="lectuer">
+						<select name="lectuer" required="required">
+							<option value=''>담당 강사 선택</option>
 							<c:forEach var="lectuer" items="${lectuerList}">
 								<option value="${lectuer}">${lectuer}</option>
 							</c:forEach>
@@ -42,13 +43,13 @@
 				<tr>
 					<th>학점</th>
 					<td>
-						<input type="number" name="credit">
+						<input type="number" name="credit" required="required">
 					</td>
 				</tr>
 				<tr>
 					<th>요일</th>
 					<td>
-						<input type="radio" name="week" value="1">월
+						<input type="radio" name="week" value="1" checked="checked">월
 						<input type="radio" name="week" value="2">화
 						<input type="radio" name="week" value="3">수
 						<input type="radio" name="week" value="4">목
@@ -59,13 +60,13 @@
 				<tr>
 					<th>시작</th>
 					<td>
-						<input type="text" name="startHour">
+						<input type="text" name="startHour" required="required">
 					</td>
 				</tr>
 				<tr>
 					<th>종료</th>
 					<td>
-						<input type="text" name="endHour">
+						<input type="text" name="endHour" required="required">
 					</td>
 				</tr>
 			</table>

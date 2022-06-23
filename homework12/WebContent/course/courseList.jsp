@@ -13,9 +13,9 @@
 <%@ include file="/header/header.jsp" %>
 
 	<div id="wrap" align="center">
-		<h1 align="left">총 ${count}개의 교과목이 있습니다.</h1>
+		<h2 align="left">총 ${count}개의 교과목이 있습니다.</h2>
 			<div class="right" align="right">
-				<input type="button" value="강사 보기">
+				<input type="button" value="강사 보기" onclick="location.href='CS?command=lectuerer_list'">
 			</div>
 			<br>
 			<table>
