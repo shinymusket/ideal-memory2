@@ -1,0 +1,8 @@
+package spring.service;
+
+public class MemberRegisterService { // 회원 가입 기능
+	
+	public void regist() {
+		
+	}
+}

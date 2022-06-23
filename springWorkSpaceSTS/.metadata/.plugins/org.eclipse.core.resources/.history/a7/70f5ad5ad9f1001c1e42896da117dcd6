@@ -1,0 +1,10 @@
+package ex01;
+
+public class Greeter { // 자바에서 어떻게 클래스를 사용하는가??
+	private String format;
+	
+	public String greet(String name) {
+		return String.format(format, name);
+	}
+	
+}

@@ -1,0 +1,6 @@
+package spring.dao;
+
+public class MemberDao {
+	private Static long nextId = 0;
+	
+}

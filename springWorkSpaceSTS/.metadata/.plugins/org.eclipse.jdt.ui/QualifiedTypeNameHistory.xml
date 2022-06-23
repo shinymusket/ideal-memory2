@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+    <fullyQualifiedTypeName name="spring.exception.IdPasswordNotMatchingException"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="spring.vo.RegisterRequest"/>
+    <fullyQualifiedTypeName name="spring.exception.AlreadyExistingMemberException"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="spring.exception.MemberNotFoundException"/>
+    <fullyQualifiedTypeName name="spring.service.MemberRegisterService"/>
+    <fullyQualifiedTypeName name="spring.dao.MemberDao"/>
+    <fullyQualifiedTypeName name="spring.vo.Member"/>
+    <fullyQualifiedTypeName name="org.springframework.context.support.GenericXmlApplicationContext"/>
+</qualifiedTypeNameHistroy>

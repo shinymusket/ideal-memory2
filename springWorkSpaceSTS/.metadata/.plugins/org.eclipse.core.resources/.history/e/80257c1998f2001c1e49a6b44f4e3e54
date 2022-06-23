@@ -1,0 +1,8 @@
+package spring.assembler;
+
+public class Assembler { // 객체 조립기
+
+	private MemberDao dao;
+	
+	
+}

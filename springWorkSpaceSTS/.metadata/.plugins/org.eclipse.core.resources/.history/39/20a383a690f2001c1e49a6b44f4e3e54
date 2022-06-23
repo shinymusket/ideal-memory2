@@ -1,0 +1,7 @@
+package spring.vo;
+
+public class Member {
+	
+	private Long id;
+	pirvate String email;
+}

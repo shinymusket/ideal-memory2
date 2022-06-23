@@ -1,0 +1,14 @@
+package spring.service;
+
+import spring.dao.MemberDao;
+import spring.vo.Member;
+import spring.vo.RegisterRequest;
+
+public class MemberRegisterService { // 회원 가입 기능
+	
+	public void regist(RegisterRequest req) {
+		
+		private MemberDao dao = new MemberDao();
+		Member member = dao.selectByEmail(req.getEmail());
+	}
+}

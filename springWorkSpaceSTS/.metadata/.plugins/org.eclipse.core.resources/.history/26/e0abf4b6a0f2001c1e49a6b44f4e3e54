@@ -1,0 +1,12 @@
+package spring.printer;
+
+public class MemberListPrinter {
+	
+	private MemberDao dao;
+	
+	
+	
+	public void printAll() {
+		dao.select
+	}
+}

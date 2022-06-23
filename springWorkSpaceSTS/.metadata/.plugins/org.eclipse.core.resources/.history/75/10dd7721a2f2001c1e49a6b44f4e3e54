@@ -1,0 +1,15 @@
+package spring.printer;
+
+import spring.dao.MemberDao;
+
+public class MemberInfoPrinter {
+	
+	private MemberDao dao;
+	private MemberPrinter printer;
+	
+	
+	public void printMemberInfo(String email) {
+		
+		
+	}
+}

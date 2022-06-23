@@ -1,0 +1,20 @@
+package spring.printer;
+
+import spring.dao.MemberDao;
+import spring.vo.Member;
+
+public class MemberInfoPrinter {
+	
+	private MemberDao dao;
+	private MemberPrinter printer;
+	
+	
+	public void printMemberInfo(String email) {
+		
+		Member m = dao.selectByEmail(email);
+		
+		if (m == null) {
+			
+		}
+	}
+}

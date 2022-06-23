@@ -1,0 +1,12 @@
+package spring.assembler;
+
+import spring.service.MemberRegisterService;
+
+public class Assembler { // 객체 조립기
+
+	private MemberDao dao;
+	
+	private MemberRegisterService regSvc;
+	private ChangePasswordService pwdSvc;
+	
+}

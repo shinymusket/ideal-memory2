@@ -1,0 +1,13 @@
+package spring.printer;
+
+public class VersionPrinter {
+	
+	public void print() {
+		System.out.printf(
+				"이 프로그램 버전은 %d.%d 입니다. \n\n",
+				);
+	}
+	
+	
+	
+}

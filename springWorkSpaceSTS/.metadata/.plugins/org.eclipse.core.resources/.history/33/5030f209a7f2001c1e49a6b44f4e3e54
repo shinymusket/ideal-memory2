@@ -1,0 +1,11 @@
+package spring.printer;
+
+public class VersionPrinter {
+	
+	public void print() {
+		System.out.println();
+	}
+	
+	
+	
+}

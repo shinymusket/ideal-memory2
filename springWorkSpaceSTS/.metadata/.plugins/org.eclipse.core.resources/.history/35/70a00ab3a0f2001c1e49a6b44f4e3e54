@@ -1,0 +1,12 @@
+package spring.printer;
+
+public class MemberListPrinter {
+	
+	
+	
+	
+	
+	public void printAll() {
+		
+	}
+}

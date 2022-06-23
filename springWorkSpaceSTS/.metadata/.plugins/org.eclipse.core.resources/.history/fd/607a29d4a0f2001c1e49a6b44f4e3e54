@@ -1,0 +1,17 @@
+package spring.printer;
+
+import java.util.Collection;
+
+import spring.dao.MemberDao;
+import spring.vo.Member;
+
+public class MemberListPrinter {
+	
+	private MemberDao dao;
+	
+	
+	
+	public void printAll() {
+		Collection<Member> members = dao.selectAll();
+	}
+}

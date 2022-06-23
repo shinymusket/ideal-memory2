@@ -1,0 +1,8 @@
+package spring.dao;
+
+public class MemberDao {
+	private static long nextId = 0; // 시퀀스
+	
+	private Map<String, Member> map = new HashMap<>();
+	
+}

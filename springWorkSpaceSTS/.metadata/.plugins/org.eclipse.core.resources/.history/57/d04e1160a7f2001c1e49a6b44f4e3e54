@@ -1,0 +1,30 @@
+package spring.printer;
+
+public class VersionPrinter {
+	
+	private int majorVersion;
+	private int minorVersion;
+	
+	
+	
+	public VersionPrinter(int majorVersion, int minorVersion) {
+		super();
+		this.majorVersion = majorVersion;
+		this.minorVersion = minorVersion;
+	}
+
+
+	public VersionPrinter() {
+		
+	}
+	
+	
+	public void print() {
+		System.out.printf(
+				"이 프로그램 버전은 %d.%d 입니다. \n\n",
+				majorVersion, minorVersion);
+	}
+	
+	
+	
+}

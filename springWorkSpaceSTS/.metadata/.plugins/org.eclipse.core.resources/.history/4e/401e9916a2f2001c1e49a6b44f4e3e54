@@ -1,0 +1,8 @@
+package spring.printer;
+
+public class MemberInfoPrinter {
+	
+	public void printMemberInfo(String email) {
+		
+	}
+}
