@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="c1" class="spring.bean.Client1">
+		<property name="host" value="웹서버1"/>
+	</bean>
+	
+	<bean id="c2" class="spring.bean.Client2" init-method="open" destroy-method="close">
+										<!-- 초기화시 사용할 메서드      소멸시 사용할 메서드 -->
+		<property name="host" value="웹서버2"/>
+	</bean>
+											<!-- 범위의 기본값 scope="singleton" -->
+	<bean id="c3" class="spring.bean.Client3" scope="prototype">
+		<property name="host" value="포로토 서버"/>
+	</bean>
+	
+</beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:annotation-config/> <!-- 자동 주입 활성화 -->
+	
+	<!-- Java 설정 읽어와서 합치기 -->
+	<bean class="spring.config.JavaSubConfig"/>
+	<!-- 설정파일을 다른 곳에 주입할 것이 아니므로 id값은 불필요함. -->
+	
+	<!-- DAO 빈 -->
+	<bean id="dao" class="spring.dao.MemberDao"/>
+
+	<!-- MemberRegistService 빈 -->
+	<bean class="spring.service.MemberRegisterService" id="memberRegSvc">
+		<constructor-arg ref="dao"/>
+	</bean>
+</beans>
