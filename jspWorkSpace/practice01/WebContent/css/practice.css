@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+header {
+	background-color : black;
+	width : 200px;
+	color : white;
+	float: left;
+	padding : 0 30px;
+}
+
+header a, a:visited {
+	color:white;
+	text-decoration: none;
+}
+
+header a:hover {
+	color:gray;
+}
+
+#container {
+	float: left;
+	width:970px;
+}
+
+/* a, a:visited {
+	color:black;
+	text-decoration: none;
+} */
+
+li {
+	list-style: none;
+}
+
