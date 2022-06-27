@@ -73,7 +73,7 @@ nav li {
 	padding-top : 15px;
 }
 
-nav a, a:visited {
+nav a, nav a:visited {
 	color : white;
 	text-decoration: none;
 }

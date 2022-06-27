@@ -8,20 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.green.shopping.dao.MemberDAO;
-import com.green.shopping.vo.MemberVO;
+import com.green.shopping.vo.PriceVO;
 
-public class MemberSelectAction implements Action {
+public class MemberSelectPriceAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "shopping/memberSelect.jsp";
+		String url = "shopping/memberSelectPrice.jsp";
 		
 		MemberDAO dao = MemberDAO.getInstatnce();
-		List<MemberVO> list = dao.selectAllMember();
+		List<PriceVO> list = dao.selectMemberPrice();
 		
-		
-		
-		request.setAttribute("memberList", list);
+		request.setAttribute("memberPriceList", list);
 		
 		request.getRequestDispatcher(url).forward(request, response);
 

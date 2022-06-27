@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원목록조회/수정</title>
-<link type="text/css" rel="stylesheet" href="css/shopping.css">
+<link type="text/css" rel="stylesheet" href="css/shopping.css?">
 </head>
 <body>
 <%@ include file="../header/header.jsp" %>
@@ -26,7 +26,7 @@
 			
 			<c:forEach items="${memberList}" var="member">
 			<tr>
-				<td>${member.custno}</td>
+				<td><a href="SS?command=member_update_form&custno=${member.custno}">${member.custno}</a></td>
 				<td>${member.custname}</td>
 				<td>${member.phone}</td>
 				<td>${member.address}</td>
