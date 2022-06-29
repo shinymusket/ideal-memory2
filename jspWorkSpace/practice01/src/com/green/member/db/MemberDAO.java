@@ -136,6 +136,81 @@ public class MemberDAO {
 		
 		return member;
 	}
+
+	public int updateMember(MemberDTO member) { // 회원 정보 수정
+		int result = 0;
+		String sql = "UPDATE ex_memberinfo SET name=?, nickname=?, email=? WHERE id=?";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		try {
+			conn = DBManager.getConnetion();
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, member.getName());
+			psmt.setString(2, member.getNickname());
+			psmt.setString(3, member.getEmail());
+			psmt.setString(4, member.getId());
+
+			result = psmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, psmt);
+		}
+		
 	
+		return result;
+	}
 	
+	public int updateMemberPwd(MemberDTO member) { // 비밀번호 변경
+		int result = 0;
+		String sql = "UPDATE ex_memberinfo SET passwd=? WHERE id=?";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		try {
+			conn = DBManager.getConnetion();
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, member.getPasswd());
+			psmt.setString(2, member.getId());
+			
+			result = psmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, psmt);
+		}
+		
+		return result;
+	}
+
+	public int withdrawalMember(String id) { // 회원 탈퇴
+		int result = 0;
+		String sql = "DELETE ex_memberinfo WHERE id=?";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		try {
+			conn = DBManager.getConnetion();
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, id);
+			
+			result = psmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, psmt);
+		}
+		
+		return result;
+	}
 }

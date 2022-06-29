@@ -12,7 +12,7 @@ import com.green.member.db.MemberDTO;
 public class LoginAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("LoginAction");
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("UTF-8");

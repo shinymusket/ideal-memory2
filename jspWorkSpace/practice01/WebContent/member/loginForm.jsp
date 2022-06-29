@@ -20,8 +20,8 @@
 			<form action="/practice01/LoginAction.do" method="post">
 				<input class="w3-input w3-border" style="width:50%" type="text" name="id" id="id" required="required" placeholder="아이디" autofocus>
 				<input class="w3-input w3-border" style="width:50%" type="password" name="passwd" id="passwd" required="required" placeholder="비밀번호">
-				<input class="w3-button w3-text-black" type="submit" value="로그인">
-				<input class="w3-button w3-text-black" type="button" value="ID/PW 찾기" onclick="location.href=''">
+				<input class="w3-button w3-section w3-black w3-gray" type="submit" value="로그인">
+				<input class="w3-button w3-section w3-black w3-gray" type="button" value="ID/PW 찾기" onclick="location.href=''">
 			</form>
 		</div>
 	</div>

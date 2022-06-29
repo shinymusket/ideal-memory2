@@ -14,6 +14,12 @@ import com.green.member.service.ActionForward;
 import com.green.member.service.LogOut;
 import com.green.member.service.LoginAction;
 import com.green.member.service.MemberJoin;
+import com.green.member.service.MemberUpdate;
+import com.green.member.service.MemberUpdateForm;
+import com.green.member.service.PasswdChange;
+import com.green.member.service.PasswdChangeForm;
+import com.green.member.service.PasswordCheck;
+import com.green.member.service.Withdrawal;
 
 
 @WebServlet("*.do")
@@ -48,7 +54,7 @@ public class Controller extends HttpServlet {
 		else if (command.equals("/MemberJoin.do")) {
 			try {
 				action = new MemberJoin();
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -65,29 +71,76 @@ public class Controller extends HttpServlet {
 		else if (command.equals("/LoginAction.do")) {
 			try {
 				action = new LoginAction();
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
 		}
 		
 		// 로그아웃
-		else if (command.contentEquals("/LogOut.do")) {
+		else if (command.equals("/LogOut.do")) {
 			try {
 				action = new LogOut();
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 				
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
 		
+		// 정보수정폼 form
+		else if (command.equals("/MemberUpdateForm.do")) {
+			try {
+				action = new MemberUpdateForm();
+				forward = action.execute(request, response);
+						
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 정보 수정
+		else if (command.equals("/MemberUpdate.do")) {
+			try {
+				action = new MemberUpdate();
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 비밀번호 변경 폼 
+		else if (command.equals("/PasswdChangeForm.do")) {
+			try {
+				action = new PasswdChangeForm();
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 비밀번호 변경
+		else if (command.equals("/PasswdChange.do")) {
+			try {
+				action = new PasswdChange();
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 회원탈퇴
+		else if (command.equals("/Withdrawal.do")) { 
+			try {
+				action = new Withdrawal();
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
-		
-		
-		
-		
+
 		// 페이지 이동
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 이동일 경우

@@ -11,7 +11,7 @@ import com.green.member.db.MemberDTO;
 public class MemberJoin implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberJoin");
 		// out 객체에서 사용할 타입
 		response.setContentType("text/html;charset=utf-8");
