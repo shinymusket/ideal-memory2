@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.green.member.service.Action;
 import com.green.member.service.ActionForward;
+import com.green.member.service.BoardList;
 import com.green.member.service.LogOut;
 import com.green.member.service.LoginAction;
 import com.green.member.service.MemberJoin;
@@ -18,7 +19,6 @@ import com.green.member.service.MemberUpdate;
 import com.green.member.service.MemberUpdateForm;
 import com.green.member.service.PasswdChange;
 import com.green.member.service.PasswdChangeForm;
-import com.green.member.service.PasswordCheck;
 import com.green.member.service.Withdrawal;
 
 
@@ -133,6 +133,16 @@ public class Controller extends HttpServlet {
 		else if (command.equals("/Withdrawal.do")) { 
 			try {
 				action = new Withdrawal();
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 게시판 목록
+		else if (command.equals("/BoardList.do")) { 
+			try {
+				action = new BoardList();
 				forward = action.execute(request, response);
 			} catch(Exception e) {
 				e.printStackTrace();

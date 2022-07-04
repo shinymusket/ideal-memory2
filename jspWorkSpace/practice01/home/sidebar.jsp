@@ -29,21 +29,21 @@ body, h1, h2, h3, h4, h5, h6 {
 				<br />HOME
 			</a>
 			<c:if test="${ id == null }">
-				<a href="/expro/LoginForm.do" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+				<a href="/practice01/LoginForm.do" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
 	   				<i class="fa fa-connectdevelop w3-xxlarge"></i>
 	  			 	<br />로그인
 	  			</a>
-	  			<a href="/expro/MemberJoinForm.do" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+	  			<a href="/practice01/MemberJoinForm.do" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
 	    			<i class="fa fa-user-plus w3-xxlarge"></i>
 	    			<br />회원가입
 	  			</a>
   			</c:if>
   			<c:if test="${ id != null }">
-				<a href="/expro/MemberUpdateForm.do" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+				<a href="/practice01/MemberUpdateForm.do" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
 					<i class="fa fa-user w3-xxlarge"></i>
 					<br />${ nickname }(${ id })
 				</a>
-				<a href="/expro/LogOut.do" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+				<a href="/practice01/LogOut.do" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
 					<i class="fa fa-sign-out w3-xxlarge"></i>
 					<br />로그아웃
 				</a>
@@ -51,10 +51,10 @@ body, h1, h2, h3, h4, h5, h6 {
 			<c:if test="${ id.equals('joker') }">
 				<a href="#" class="w3-bar-item w3-button w3-hover-white">관리자 모드</a>
 			</c:if>
-			<a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴1</a>
-			<a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴2</a>
-			<a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴3</a>
-			<a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴4</a>
+			<a href="/practice01/BoardList.do?section=menu1" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴1</a>
+			<a href="/practice01/BoardList.do?section=menu2" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴2</a>
+			<a href="/practice01/BoardList.do?section=menu3" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴3</a>
+			<a href="/practice01/BoardList.do?section=menu4" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴4</a>
 		</nav>
 	</div>
 </body>
