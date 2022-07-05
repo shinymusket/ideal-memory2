@@ -20,4 +20,19 @@
   	<select id="get_member" parameterType="String"  resultType="memberDTO">
   		select * from ex_memberinfo where id = #{id}
   	</select>
+  	
+  	<!-- 회원정보 수정 -->
+  	<update id="update_member" parameterType="memberDTO">
+  		update ex_memberinfo set name = #{name}, email = #{email}, nickname = #{nickname} where id = #{id}
+  	</update>
+  	
+  	<!-- 회원 비밀번호 수정 -->
+  	<update id="update_member_pwd" parameterType="memberDTO">
+  		update ex_memberinfo set passwd = #{passwd} where id = #{id}
+  	</update>
+  	
+  	<!-- 회원 탈퇴 -->
+  	<delete id="delete_member" parameterType="String">
+  		delete ex_memberinfo where id = #{id}
+  	</delete>
 </mapper>

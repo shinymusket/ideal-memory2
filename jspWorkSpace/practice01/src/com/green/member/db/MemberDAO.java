@@ -94,6 +94,57 @@ public class MemberDAO {
 		return member;
 	}
 	
+	// 정보 수정
+	public int updateMember(MemberDTO member) {
+		int result = 0;
+		try {
+			session = getSession();
+			result =  session.update("member.update_member", member);
+			System.out.println("result : " + result);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("updateMember 에러 : " + e);
+		}
+		return result;
+	}
+	
+	// 비밀번호 변경
+	public int updateMemberPwd(MemberDTO member) {
+		int result = 0;
+		try {
+			session = getSession();
+			result = session.update("member.update_member_pwd", member);
+			System.out.println("result : " + result);
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("updateMemberPwd 에러 : " + e);
+		}
+		return result;
+	}
+	
+	// 회원 탈퇴
+	public int withdrawalMember(String id) {
+		int result = 0;
+		try {
+			session = getSession();
+			result = session.delete("member.delete_member", id);
+			System.out.println("result : " + result);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("withdrawalMember 에러 : " + e);
+		}
+		
+		
+		
+		return result;
+	}
+	
+	
+	
 	
 	// 싱글톤
 	
