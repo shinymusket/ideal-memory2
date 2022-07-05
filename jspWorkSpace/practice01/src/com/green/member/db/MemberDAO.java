@@ -45,7 +45,7 @@ public class MemberDAO {
 		int result = 0;
 		try {
 			session = getSession();
-			result = (Integer) session.selectOne("member.member_check", id);
+			result = session.selectOne("member.member_check", id);
 			
 			
 		} catch(Exception e) {

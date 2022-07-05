@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.green.board.service.BoardList;
 import com.green.member.service.Action;
 import com.green.member.service.ActionForward;
-import com.green.member.service.BoardList;
 import com.green.member.service.LogOut;
 import com.green.member.service.LoginAction;
 import com.green.member.service.MemberJoin;

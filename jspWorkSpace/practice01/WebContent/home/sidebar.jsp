@@ -51,10 +51,10 @@ body, h1, h2, h3, h4, h5, h6 {
 			<c:if test="${ id.equals('joker') }">
 				<a href="#" class="w3-bar-item w3-button w3-hover-white">관리자 모드</a>
 			</c:if>
-			<a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴1</a>
-			<a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴2</a>
-			<a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴3</a>
-			<a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴4</a>
+			<a href="/practice01/BoardList.do?section=menu1" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴1</a>
+			<a href="/practice01/BoardList.do?section=menu2" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴2</a>
+			<a href="/practice01/BoardList.do?section=menu3" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴3</a>
+			<a href="/practice01/BoardList.do?section=menu4" class="w3-bar-item w3-button w3-padding-large w3-hover-black">메뉴4</a>
 		</nav>
 	</div>
 </body>
