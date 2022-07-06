@@ -12,7 +12,7 @@
  	<select id="board_fCount" parameterType="java.util.Map" resultType="int">
 		select count(*) from ex_board
 		<where>
-			<if test="sel == 'id'">
+			<if test="sel == 'id'">0
 				id like #{find}
 			</if>
 			<if test="sel == 'board_subject'">

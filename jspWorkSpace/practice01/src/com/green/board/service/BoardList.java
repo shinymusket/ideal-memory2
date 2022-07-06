@@ -107,7 +107,7 @@ public class BoardList implements Action {
 		forward.setRedirect(false);
 		forward.setPath("./board/boardList.jsp");
 		
-		return null;
+		return forward;
 	}
 
 }

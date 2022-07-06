@@ -8,7 +8,7 @@ public class BoardDTO {
 	private String board_subject;
 	private String board_content;
 	private String ip;
-	private int readCount;
+	private int readcount;
 	private String file_name;
 	private String section;
 	private Date write_date;
@@ -44,11 +44,11 @@ public class BoardDTO {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	public int getReadCount() {
-		return readCount;
+	public int getReadcount() {
+		return readcount;
 	}
-	public void setReadCount(int readCount) {
-		this.readCount = readCount;
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
 	}
 	public String getFile_name() {
 		return file_name;
