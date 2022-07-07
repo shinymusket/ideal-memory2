@@ -34,7 +34,9 @@
 			
 			</c:if>
 		</table>
+		<div class="bts" align="right">
 			<input type="button" value="작성" onclick="location.href='/homework13/BW'">
+		</div>	
 	</div>
 	
 	

@@ -95,6 +95,11 @@ nav a, nav a:visited {
 nav a:hover {
 	color : red;
 }
+
+div.bts {
+	margin-top : 10px;
+	width: 800px;
+}
 /* header, footer .warp {
 	
 } */

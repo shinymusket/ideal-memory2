@@ -1,3 +1,4 @@
+
 DROP TABLE board_tbl;
 
 CREATE TABLE board_tbl (
@@ -9,6 +10,11 @@ CREATE TABLE board_tbl (
 );
 
 SELECT * FROM board_tbl;
+
+SELECT * FROM board_tbl WHERE idx=?;
+
+SELECT idx, writer, subject, regdate FROM board_tbl ORDER BY regdate DESC;
+
 ALTER session set NLS_DATE_FORMAT = 'YYYY/MM/DD HH24:MI:SS';
 
 CREATE SEQUENCE seq_board_tbl
@@ -27,32 +33,52 @@ INSERT INTO board_tbl VALUES(SEQ_BOARD_TBL.nextval, '나회원', 'github를 사�
 INSERT INTO board_tbl VALUES(SEQ_BOARD_TBL.nextval, '문회원', '노는 게 제일좋아', '모두들 모여라', to_date('18/08/06 16:21:40', 'YY/MM/DD HH24:MI:SS'));
 INSERT INTO board_tbl VALUES(SEQ_BOARD_TBL.nextval, '지회원', '여름아', '부탁해', to_date('18/08/07 17:01:45', 'YY/MM/DD HH24:MI:SS'));
 
+UPDATE board_tbl SET writer=?, subject=?, content=? WHERE idx=?;
+
+DELETE board_tbl WHERE idx=?;
+
 COMMIT;
 
-CREATE TABLE commnet_tbl (
+INSERT INTO board_tbl VALUES(SEQ_BOARD_TBL.nextval, ?, ?, ?, sysdate);
+
+
+CREATE TABLE comment_tbl (
     idx NUMBER(6) CONSTRAINT PK_commnet_tbl PRIMARY KEY,
     bidx NUMBER(6),
-    witer VARCHAR2(20),
+    writer VARCHAR2(20),
     content CLOB,
     regdate DATE
 );
 
-CREATE SEQUENCE seq_commnet_tbl
+
+SELECT * FROM commnet_tbl WHERE bidx=?;
+
+DELETE FROM comment_tbl WHERE idx=?;
+
+ALTER TABLE commnet_tbl
+ADD CONSTRAINT FK_board_tbl_idx FOREIGN KEY(bidx) REFERENCES board_tbl(idx);
+
+CREATE SEQUENCE seq_comment_tbl
 START WITH 1
 INCREMENT BY 1
 NOCACHE;
 
-SELECT * FROM commnet_tbl;
 
-UPDATE commnet_tbl SET bidx=9 WHERE bidx=8;
 
-INSERT INTO commnet_tbl VALUES(SEQ_COMMNET_TBL.nextval, 1, '김회원', 'Lorem ipsum dolor sit amet', to_date('18/08/01 12:34:56', 'YY/MM/DD HH24:MI:SS'));
-INSERT INTO commnet_tbl VALUES(SEQ_COMMNET_TBL.nextval, 3, '김회원', 'consectetur adipiscing elit', to_date('18/08/01 12:43:43', 'YY/MM/DD HH24:MI:SS'));
-INSERT INTO commnet_tbl VALUES(SEQ_COMMNET_TBL.nextval, 5, '이회원', 'sed do eiusmod tempor', to_date('18/08/02 13:34:56', 'YY/MM/DD HH24:MI:SS'));
-INSERT INTO commnet_tbl VALUES(SEQ_COMMNET_TBL.nextval, 7, '이회원', 'incididunt ut labore et', to_date('18/08/03 13:43:34', 'YY/MM/DD HH24:MI:SS'));
-INSERT INTO commnet_tbl VALUES(SEQ_COMMNET_TBL.nextval, 9, '박회원', 'dolore magna aliqua', to_date('18/08/04 13:12:10', 'YY/MM/DD HH24:MI:SS'));
-INSERT INTO commnet_tbl VALUES(SEQ_COMMNET_TBL.nextval, 2, '박회원', 'minim veniam, quis nostrud', to_date('18/08/04 14:34:20', 'YY/MM/DD HH24:MI:SS'));
-INSERT INTO commnet_tbl VALUES(SEQ_COMMNET_TBL.nextval, 3, '강회원', 'exercitation ullamco laboris', to_date('18/08/05 14:56:30', 'YY/MM/DD HH24:MI:SS'));
-INSERT INTO commnet_tbl VALUES(SEQ_COMMNET_TBL.nextval, 5, '나회원', 'nisi ut aliquip', to_date('18/08/06 15:43:35', 'YY/MM/DD HH24:MI:SS'));
-INSERT INTO commnet_tbl VALUES(SEQ_COMMNET_TBL.nextval, 7, '문회원', 'ex ea commodo consequat', to_date('18/08/07 16:21:40', 'YY/MM/DD HH24:MI:SS'));
-INSERT INTO commnet_tbl VALUES(SEQ_COMMNET_TBL.nextval, 2, '지회원', 'Duis aute irure dolor', to_date('18/08/07 17:01:45', 'YY/MM/DD HH24:MI:SS'));
+SELECT * FROM comment_tbl;
+
+UPDATE comment_tbl SET bidx=9 WHERE bidx=8;
+
+INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, 1, '김회원', 'Lorem ipsum dolor sit amet', to_date('18/08/01 12:34:56', 'YY/MM/DD HH24:MI:SS'));
+INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, 3, '김회원', 'consectetur adipiscing elit', to_date('18/08/01 12:43:43', 'YY/MM/DD HH24:MI:SS'));
+INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, 5, '이회원', 'sed do eiusmod tempor', to_date('18/08/02 13:34:56', 'YY/MM/DD HH24:MI:SS'));
+INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, 7, '이회원', 'incididunt ut labore et', to_date('18/08/03 13:43:34', 'YY/MM/DD HH24:MI:SS'));
+INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, 9, '박회원', 'dolore magna aliqua', to_date('18/08/04 13:12:10', 'YY/MM/DD HH24:MI:SS'));
+INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, 2, '박회원', 'minim veniam, quis nostrud', to_date('18/08/04 14:34:20', 'YY/MM/DD HH24:MI:SS'));
+INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, 3, '강회원', 'exercitation ullamco laboris', to_date('18/08/05 14:56:30', 'YY/MM/DD HH24:MI:SS'));
+INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, 5, '나회원', 'nisi ut aliquip', to_date('18/08/06 15:43:35', 'YY/MM/DD HH24:MI:SS'));
+INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, 7, '문회원', 'ex ea commodo consequat', to_date('18/08/07 16:21:40', 'YY/MM/DD HH24:MI:SS'));
+INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, 2, '지회원', 'Duis aute irure dolor', to_date('18/08/07 17:01:45', 'YY/MM/DD HH24:MI:SS'));
+
+
+INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, ?, ?, ?, sysdate);

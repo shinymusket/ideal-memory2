@@ -50,27 +50,25 @@
 				</table>
 			</c:if>
 			
-			<form action="CW" method="post">
+			<form action="CW" method="post" name="frm">
 				<table class="boardComment">
 					
 						<tr>
-							<th colspan="2">댓글 작성</th>
+							<th>댓글 작성</th>
 						</tr>
 						<tr>
 							<td>
-								<input type="text" name="writer" placeholder="작성자" size=5>
-								<input type="text" name="content" placeholder="댓글 내용">
-								<input type="hidden" name="bidx" value="${boardIdx}"> 
-							</td>
-							<td>
-								<input type="submit" value="작성완료">
+								<input type="text" name="writer" id="writer" placeholder="작성자" size=5>
+								<input type="text" name="content" id="content" placeholder="댓글 내용" size=50>
+								<input type="hidden" name="bidx" value="${boardIdx}">
+								<input type="button" value="작성완료" onclick="check();"> 
 							</td>
 						</tr>
 					
 				</table>
 			</form>
 			
-		<div>
+		<div class="bts" align="right">
 			<input type="button" value="목록" onclick="location.href='/homework13/BL'">
 			<input type="button" value="수정" onclick="location.href='/homework13/BU?idx=${board.idx}'">
 			<input type="button" value="삭제" onclick="location.href='/homework13/BD?idx=${board.idx}'">
@@ -80,4 +78,24 @@
 
 <%@ include file="../footer/footer.jsp" %>
 </body>
+<script type="text/javascript">
+	function check() {
+		var writer = document.getElementById("writer").value;
+		var content = document.getElementById("content").value;
+		
+		if (writer == "") {
+			alert("댓글 작성자 명을 입력해주세요.");
+			focus.writer();
+			return false;
+		}
+		if (content == "") {
+			alert("댓글 내용을 입력해주세요.");
+			focus.content();
+			return false;
+		}
+		
+		document.frm.submit();		
+	}
+</script>
+
 </html>
