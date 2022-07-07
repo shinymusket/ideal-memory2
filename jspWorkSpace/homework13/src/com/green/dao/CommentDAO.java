@@ -25,7 +25,7 @@ public class CommentDAO {
 		// 댓글 조회
 		public List<CommentVO> selectAllCommnet(int bidx) {
 			List<CommentVO> list = new ArrayList<>();
-			String sql = "SELECT * FROM commnet_tbl WHERE bidx=?";
+			String sql = "SELECT * FROM comment_tbl WHERE bidx=?";
 			
 			Connection conn = null;
 			PreparedStatement psmt = null;
@@ -62,6 +62,55 @@ public class CommentDAO {
 			}
 
 			return list;
+			
+		}
+
+		
+		// 댓글 삭제
+		public void deleteCommentByIdx(int idx) {
+			String sql = "DELETE FROM comment_tbl WHERE idx=?";
+			
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			
+			try {
+				conn = DBManager.getConnection();
+				psmt = conn.prepareStatement(sql);
+				
+				psmt.setInt(1, idx);
+				
+				psmt.executeUpdate();
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, psmt);
+			}
+			
+			
+		}
+		
+		// 댓글 작성
+		public void insertComment(CommentVO cVo) {
+			String sql = "INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, ?, ?, ?, sysdate)";
+			
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			
+			try {
+				conn = DBManager.getConnection();
+				psmt = conn.prepareStatement(sql);
+				psmt.setInt(1, cVo.getBidx());
+				psmt.setString(2, cVo.getWriter());
+				psmt.setString(3, cVo.getContent());
+				
+				psmt.executeUpdate();
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, psmt);
+			}
 			
 		}
 		

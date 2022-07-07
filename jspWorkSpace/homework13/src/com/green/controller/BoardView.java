@@ -33,6 +33,7 @@ public class BoardView extends HttpServlet {
 		request.setAttribute("board", bVo);
 		request.setAttribute("commentList", list);
 		
+		request.setAttribute("boardIdx", bVo.getIdx());
 		
 		request.getRequestDispatcher(url).forward(request, response);
 	}
