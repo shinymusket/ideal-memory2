@@ -1,0 +1,8 @@
+package spring.vo;
+
+public class ChangePwdCommand {
+	private String currentPassword;
+	private String newPassword;
+	
+	
+}

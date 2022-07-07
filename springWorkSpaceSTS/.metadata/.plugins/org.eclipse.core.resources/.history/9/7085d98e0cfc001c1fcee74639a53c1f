@@ -1,0 +1,11 @@
+package spring.survey;
+
+import java.util.List;
+
+public class AnswerData {
+	
+	private List<String> responses;
+	private Respondent res;
+	
+	
+}

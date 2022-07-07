@@ -1,0 +1,10 @@
+package spring.service;
+
+public class AuthService {
+	
+	
+	
+	public AuthInfo authenticate(String email, String password) {  // 로그인 처리를 위한 기능 메서드
+		
+	};
+}

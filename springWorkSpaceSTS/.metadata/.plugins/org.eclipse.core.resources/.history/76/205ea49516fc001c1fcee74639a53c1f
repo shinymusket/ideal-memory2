@@ -1,0 +1,46 @@
+package spring.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import spring.survey.AnswerData;
+import spring.survey.Question;
+
+@Controller
+@RequestMapping("/survey")
+public class SurveyController {
+	
+	private List<Question> createQuestion() {
+		Question q1 = new Question(
+				"당신의 역할은 무엇입니까?",
+				Array.asList();
+				);
+		
+		
+		return null;;
+	}
+	
+	
+	
+	@GetMapping
+	public String form(Model model) {
+		
+		
+		model.addAttribute("");
+		return "survey/surveyForm";
+	}
+	
+	@PostMapping
+	public String submit(@ModelAttribute("ansData") AnswerData data) {
+		
+		
+		return "survey/submitted";
+	}
+	
+}

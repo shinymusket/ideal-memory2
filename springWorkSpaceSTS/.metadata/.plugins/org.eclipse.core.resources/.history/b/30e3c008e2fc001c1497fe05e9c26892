@@ -1,0 +1,6 @@
+package spring.controller;
+
+@Controller
+public class LoginController {
+	
+}

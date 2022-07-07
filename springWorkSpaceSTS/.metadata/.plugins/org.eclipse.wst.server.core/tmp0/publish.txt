@@ -1,0 +1,5 @@
+#Tomcat publish data
+#Thu Jul 07 12:16:39 KST 2022
+org.eclipse.jst.jee.server\:ex08=C\:\\javastudy\\apache-tomcat-8.5.81\\wtpwebapps\\ex08
+org.eclipse.jst.jee.server\:ex00=C\:\\javastudy\\apache-tomcat-8.5.81\\wtpwebapps\\ex00
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\GREEN\\.m2\\repository\\org\\springframework\\spring-web\\5.2.22.RELEASE\\spring-web-5.2.22.RELEASE.jar=C\:\\javastudy\\apache-tomcat-8.5.81\\wtpwebapps\\ex00\\WEB-INF\\lib\\spring-web-5.2.22.RELEASE.jar

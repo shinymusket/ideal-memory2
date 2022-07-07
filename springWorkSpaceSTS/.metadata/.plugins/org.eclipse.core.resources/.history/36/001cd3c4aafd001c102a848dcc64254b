@@ -1,0 +1,52 @@
+package spring.intercepter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import spring.vo.AuthInfo;
+
+public class AuthCheckIntercepter extends HandlerInterceptorAdapter{
+
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		request.getSession();
+		
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		
+		if (authInfo == null) {
+			return "redirect:/login";
+		}
+		
+		
+		return super.preHandle(request, response, handler);
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// 인터페이스는 추상메서드(몸체없는)
+	// 인터페이스를 구현한 클래스는 반드시 추상메서드를 구현해야 함.
+	
+	// A라는 인터페이스를 구현한 클래스가 1000개
+	// + 새로운 기능 추가 => A 인터페이스에 +추상메서드 추가 => 1000개의 클래스에 + 메서드 구현해야함.
+	
+	// 1번째 해결 방법 => 인터페이스의 상속
+	// A + 라는 새로운 인터페이스를 만들고 A로부터 상속받도록 500개 A 구현
+	// A+ 새로운 인터페이스 + 추상메서드 추가 			500개 A+ 구현
+	
+	// 2번째 해결 방법 : 디자인 패턴 - 어댑터 패턴
+	// A인터페이스를 구현한 클래스를 만든다. 구현된 깡통메서드를 가진 클래스
+	// 실제 기능을 활용할 클래스들은 깡통클래스를 상속받아서 
+	
+	// 3번째 해결 방법 : 인터페이스를 뜯어 고침 => 디폴트 메서드 != 추상 메서드
+	// 디폴트 메서드 - 필요시에만 오버라이딩
+	
+	
+	
+	
+	
+	
+}

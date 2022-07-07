@@ -1,0 +1,18 @@
+package spring.service;
+
+import spring.dao.MemberDao;
+import spring.vo.AuthInfo;
+
+public class AuthService {
+	
+	private MemberDao memberDao;
+	
+	public void setMemberDao(MemberDao memberDao) {
+		this.memberDao() = memberDao;
+	}
+	
+	
+	public AuthInfo authenticate(String email, String password) {  // 로그인 처리를 위한 기능 메서드
+		Member member = memberDao.se
+	};
+}

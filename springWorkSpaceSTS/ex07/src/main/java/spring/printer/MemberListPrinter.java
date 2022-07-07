@@ -1,6 +1,6 @@
 package spring.printer;
 
-import java.util.Collection;
+import java.util.List;
 
 import spring.dao.MemberDao;
 import spring.vo.Member;
@@ -16,7 +16,7 @@ public class MemberListPrinter {
 	}
 
 	public void printAll() {	// 두 개의 객체를 주입 받아야 사용 가능.
-		Collection<Member> members = dao.selectAll();
+		List<Member> members = dao.selectAll();
 		
 		for (Member m:members) {
 			printer.print(m);

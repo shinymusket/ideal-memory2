@@ -1,0 +1,5 @@
+package spring.validator;
+
+public class ChangePwdCommandValidator {
+
+}

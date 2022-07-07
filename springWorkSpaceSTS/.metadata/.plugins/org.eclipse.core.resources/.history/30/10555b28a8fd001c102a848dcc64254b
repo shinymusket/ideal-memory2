@@ -1,0 +1,5 @@
+package spring.intercepter;
+
+public class AuthCheckIntercepter {
+
+}

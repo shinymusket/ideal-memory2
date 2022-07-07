@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>응답 내용</title>
+</head>
+<body>
+	<h2>응답 내용</h2>
+	<p>
+		
+	</p>
+	
+	<p>응답자 위치 : ${ansData.res.location}</p>
+	<p>응답자 나이 : ${ansData}</p>
+</body>
+</html>

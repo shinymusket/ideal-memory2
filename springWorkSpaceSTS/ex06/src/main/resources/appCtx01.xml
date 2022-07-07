@@ -9,7 +9,7 @@
 	<bean class="spring.aspect.ExeTimeAspect01" id="exeTimeAspect"/>
 	
 	<!-- AOP 설정 -->
-	<aop:config>
+	<aop:config proxy-target-class="true">
 		<aop:aspect id="mAspect" ref="exeTimeAspect">
 			<!-- 한 덩어리의 공통 기능 묶음 -->		
 		

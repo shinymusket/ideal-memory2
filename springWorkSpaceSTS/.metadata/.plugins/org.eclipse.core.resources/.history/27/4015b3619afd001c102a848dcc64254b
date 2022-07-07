@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>       
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form:form>
+		<p>
+			<label> <spring:message code="currentPassword"/> <br>
+				<form:password path="currentPassword"/>
+				<form:errors paht="currentPassword"/>
+			</label>
+		</p>
+		<p>
+			<label> <spring:message code="newPassword"/> <br>
+				<form:password path="newPassword"/>
+				<form:errors paht="newPassword"/>
+			</label>
+		</p>
+		<input type="submit">
+	
+	
+	
+	</form:form>
+</body>
+</html>

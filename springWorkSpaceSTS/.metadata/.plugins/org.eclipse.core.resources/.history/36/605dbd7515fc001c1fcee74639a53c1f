@@ -1,0 +1,9 @@
+package spring.survey;
+
+public class Question {
+	
+	private String title;
+	
+	private List<Stirng> option;
+
+}

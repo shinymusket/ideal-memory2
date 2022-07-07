@@ -1,0 +1,5 @@
+package spring.survey;
+
+public class Respondant {
+
+}

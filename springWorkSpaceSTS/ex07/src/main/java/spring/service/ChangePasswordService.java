@@ -1,5 +1,7 @@
 package spring.service;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import spring.dao.MemberDao;
 import spring.exception.MemberNotFoundException;
 import spring.vo.Member;
@@ -14,6 +16,7 @@ public class ChangePasswordService {
 		this.dao = memberDao; // 생성자를 통한 주입받는다. 
 	}
 	
+	@Transactional
 	public void changePassword(String email, String oldPwd, String newPwd) {
 		Member member = dao.selectByEmail(email);
 		

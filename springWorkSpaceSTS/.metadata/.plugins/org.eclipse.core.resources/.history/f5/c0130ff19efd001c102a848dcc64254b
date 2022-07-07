@@ -1,0 +1,26 @@
+package spring.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/edit")
+public class ChangePwdController {
+
+	
+// 1. Model 객체를 이용한 방법	
+	@GetMapping("/changePassword")
+	public String form(Model model) {
+		
+		return "edit/changePwdForm";
+	}
+	
+	@PostMapping("/changePassword")
+	public String submit() {
+		
+		return "edit/changePwd";
+	}
+	
+}

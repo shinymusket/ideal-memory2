@@ -1,0 +1,38 @@
+package spring.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import spring.vo.ChangePwdCommand;
+
+@Controller
+@RequestMapping("/edit")
+public class ChangePwdController {
+
+	
+// 1. Model 객체를 이용한 방법	
+//	@GetMapping("/changePassword")
+//	public String form(Model model) {
+//		model.addAttribute("changePwdCommand", new ChangePwdCommand());
+//		return "edit/changePwdForm";
+//	}
+	
+// 2. ModelAttribute 어노테이션 이용하는 방법
+	@GetMapping("/changePassword")
+	public String form(@ModelAttribute ChangePwdCommand changePwdCommand) {
+		
+		return "edit/changePwdForm";
+	}
+	
+	
+	@PostMapping("/changePassword")
+	public String submit() {
+		
+		return "edit/changePwd";
+	}
+	
+}

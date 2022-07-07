@@ -1,0 +1,50 @@
+package spring.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import spring.exception.IdPasswordNotMatchingException;
+import spring.service.AuthService;
+import spring.validator.LoginCommandValidator;
+import spring.vo.LoginCommand;
+import spring.vo.RegisterRequest;
+
+@Controller
+public class LoginController {
+	
+	private AuthService authService;
+	
+	public void setAuthService(AuthService authService) {
+		this.authService = authService;
+	}
+
+	@GetMapping("login")
+	public String form(Model model) {
+		model.addAttribute("formData", new RegisterRequest());
+		return "login/loginForm";
+	}
+	
+	@PostMapping("login")
+	public String submit(LoginCommand loginCommand, Errors errors) {
+		new LoginCommandValidator().validate(loginCommand, errors);
+		
+		if (errors.hasErrors()) {
+			return "login/loginForm";
+		}
+		
+		try {
+			authService.authenticate(loginCommand.getEmail(), loginCommand.getPassword());
+			return "login/loginSuccess";
+		} catch(IdPasswordNotMatchingException e) {
+			errors.reject("IdPasswordNotMatching");
+			return "login/loginForm";
+		}
+		
+		
+		
+		
+	}
+}

@@ -9,7 +9,7 @@ import spring.calc.ImpeCalculator;
 import spring.calc.RecCalculator;
 
 @Configuration
-@EnableAspectJAutoProxy 		// <aop:aspectj-autoproxy/> 
+@EnableAspectJAutoProxy(proxyTargetClass = false) 		// <aop:aspectj-autoproxy/> 
 public class JavaConfig { //  = appCtx02.xml
 	
 	@Bean

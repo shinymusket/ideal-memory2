@@ -1,0 +1,6 @@
+package spring.vo;
+
+public class LoginCommand {
+	
+	private String email;
+}

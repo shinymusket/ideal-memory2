@@ -1,0 +1,8 @@
+package spring.service;
+
+public class AuthService {
+	
+	public AuthInfo authenticate() {
+		
+	};
+}
