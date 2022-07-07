@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="comment">
+	<select id="select_comment" parameterType="int" resultType="commentVO">
+		SELECT * FROM comment_tbl WHERE bidx=#{bidx}
+	</select>
+
+	<delete id="delete_comment" parameterType="int">
+		DELETE FROM comment_tbl WHERE idx=#{idx}
+	</delete>
+	
+	<insert id="insert_comment" parameterType="commentVO">
+		INSERT INTO comment_tbl VALUES(seq_comment_tbl.nextval, #{bidx}, #{writer}, #{content}, sysdate)
+	</insert>
+</mapper>

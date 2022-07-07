@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board">
+	<select id="board_select_list" resultType="boardVO">
+		select * from board_tbl
+	</select>
+	
+	<select id="select_board" parameterType="int" resultType="boardVO">
+		SELECT * FROM board_tbl WHERE idx=#{idx}
+	</select>
+	
+	<insert id="insert_board" parameterType="boardVO">
+		INSERT INTO board_tbl VALUES(SEQ_BOARD_TBL.nextval, #{writer}, #{subject}, #{content}, sysdate)
+	</insert>
+	
+	<update id="update_board" parameterType="boardVO">
+		UPDATE board_tbl SET writer=#{writer}, subject=#{subject}, content=#{content} WHERE idx=#{idx}
+	</update>
+	
+	<delete id="delete_board" parameterType="int">
+		DELETE board_tbl WHERE idx=#{idx}	
+	</delete>
+</mapper>
