@@ -21,7 +21,7 @@
 			</div>
 			<div>
 				<c:if test="${ id != null }">
-					<button type="button" class="w3-button w3-teal w3-round-small">
+					<button type="button" class="w3-button w3-teal w3-round-small" onclick="location.href='/practice01/BoardWriteForm.do?section=${section}'">
 						<i class="fa fa-pencil-square-o"></i> 글 작성
 					</button>
 				</c:if>
@@ -67,7 +67,7 @@
 						<div class="w3-container w3-border w3-hover-border-red" style="margin: 0px">
 							#${ li.board_no } <i class="fa fa-user"></i> <a href="#">${ li.id }</a> <br /> 
 							<span class="w3-xlarge w3-text-indigo w3-hover-text-white"> 
-							<a href="#" style="text-decoration: none;">${ li.board_subject }</a>
+							<a href="/practice01/BoardContent.do?section=${ section }&num=${ num }&no=${ li.board_no }" style="text-decoration: none;">${ li.board_subject }</a>
 							</span>
 							<div class="w3-right">
 								<span><i class="fa fa-eye"></i>&nbsp; ${ li.readcount }</span>&nbsp; <span><i class="fa fa-calendar"></i>&nbsp; <fmt:formatDate value="${li.write_date}" pattern="yy-MM-dd" /></span>
@@ -85,7 +85,7 @@
 						<div class="w3-container w3-border w3-hover-border-red" style="margin: 0px">
 							#${ li.board_no } <i class="fa fa-user"></i><a href="#">${ li.id }</a> <br> 
 							<span class="w3-xlarge w3-text-indigo w3-hover-text-white"> 
-							<a href="#" style="text-decoration: none;">${ li.board_subject }</a>
+							<a href="/practice01/BoardContent.do?section=${ section }&num=${ num }&no=${ li.board_no }&sel=${ sel }&find=${ find }" style="text-decoration: none;">${ li.board_subject }</a>
 							<c:choose>
 								<c:when test="${ i == num }">
 									<span class="w3-bar-item w3-button w3-small"><b>${ i }</b></span>

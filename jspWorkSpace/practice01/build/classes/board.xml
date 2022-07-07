@@ -47,4 +47,19 @@
  		where rn between #{startRow} and #{endRow}
  	</select>
  	
+ 	<!-- 게시판 글 작성  -->
+ 	<insert id="board_write" parameterType="boardDTO">
+ 		insert into ex_board values(#{id}, seq_ex_board_no.nextval, #{board_subject}, #{board_content}, #{ip}, 0, #{file_name, jdbcType=VARCHAR}, #{section}, sysdate)
+ 	</insert>
+ 	
+ 	<!-- 조회수 업데이트 -->
+ 	<update id="readcount_update" parameterType="int">
+ 		update ex_board set readcount = readcount + 1 where board_no = #{no}
+ 	</update>
+ 	
+ 	<!-- 게시판 상세페이지 -->
+ 	<select id="board_content" parameterType="int" resultType="boardDTO">
+		select * from ex_board where board_no = #{no} 	
+ 	</select>
+ 	
 </mapper>

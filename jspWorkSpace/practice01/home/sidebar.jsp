@@ -24,7 +24,7 @@ body, h1, h2, h3, h4, h5, h6 {
 	<div>
 		<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center" style="width:250px;font-weight:bold;">
 			
-			<a href="/expro/Index.do" class="w3-bar-item w3-button w3-padding-large w3-black">
+			<a href="/practice01/Index.do" class="w3-bar-item w3-button w3-padding-large w3-black">
 				<i class="fa fa-home w3-xxlarge"></i>
 				<br />HOME
 			</a>

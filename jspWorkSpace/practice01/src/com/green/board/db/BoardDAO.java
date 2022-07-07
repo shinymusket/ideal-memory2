@@ -96,4 +96,51 @@ public class BoardDAO {
 		return list;
 	}
 	
+	// 게시판 글 작성
+	public int boardWrite(BoardDTO dto) {
+		int result = 0;
+		try {
+			session = getSession();
+			result = session.insert("board.board_write", dto);
+			session.commit();
+			System.out.println("result : " + result);
+		} catch(Exception e) {
+			System.out.println("boardWrite 에러 : " + e);
+			e.printStackTrace();
+		}
+
+		return result;
+		
+	}
+	
+	// 조회수 업데이트
+	public void readcountUpdate(int no) {
+		try {
+			session = getSession();
+			session.update("board.readcount_update", no);
+			session.commit();
+			
+		} catch (Exception e) {
+			System.out.println("readcountUpdate 에러 : " + e);
+			e.printStackTrace();
+		}
+		
+	}
+	
+	// 게시판 상세페이지
+	public BoardDTO boardContent(int no) {
+		BoardDTO dto = null;
+		try {
+			session = getSession();
+			dto = session.selectOne("board.board_content", no);
+			
+		} catch (Exception e) {
+			System.out.println("boardContent 에러 : " + e );
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+	
+	
 }

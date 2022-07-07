@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.green.board.service.BoardContent;
 import com.green.board.service.BoardList;
+import com.green.board.service.BoardWrite;
 import com.green.member.service.Action;
 import com.green.member.service.ActionForward;
 import com.green.member.service.LogOut;
@@ -149,8 +151,39 @@ public class Controller extends HttpServlet {
 			}
 		}
 		
+		// 게시판 글작성 form
+		else if (command.equals("/BoardWriteForm.do")) {
+			forward = new ActionForward();
+			forward.setRedirect(true);
+			forward.setPath("./board/boardWriteForm.jsp?section=" + request.getParameter("section"));
+		}
 		
-
+		// 게시판 글작성
+		else if (command.equals("/BoardWrite.do")) {
+			try {
+				action = new BoardWrite();
+				forward = action.execute(request, response);
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		// 게시판 상세 페이지
+		else if (command.equals("/BoardContent.do")) {
+			try {
+				action = new BoardContent();
+				forward = action.execute(request, response);
+		
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
 		// 페이지 이동
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 이동일 경우

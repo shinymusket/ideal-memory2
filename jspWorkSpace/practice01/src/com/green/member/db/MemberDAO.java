@@ -61,6 +61,7 @@ public class MemberDAO {
 		try {
 			session = getSession();
 			session.insert("member.member_insert", member);
+			session.commit();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -100,6 +101,7 @@ public class MemberDAO {
 		try {
 			session = getSession();
 			result =  session.update("member.update_member", member);
+			session.commit();
 			System.out.println("result : " + result);
 			
 		} catch(Exception e) {
@@ -115,6 +117,7 @@ public class MemberDAO {
 		try {
 			session = getSession();
 			result = session.update("member.update_member_pwd", member);
+			session.commit();
 			System.out.println("result : " + result);
 			
 			
@@ -131,6 +134,7 @@ public class MemberDAO {
 		try {
 			session = getSession();
 			result = session.delete("member.delete_member", id);
+			session.commit();
 			System.out.println("result : " + result);
 			
 		} catch(Exception e) {
