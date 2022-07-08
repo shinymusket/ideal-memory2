@@ -21,6 +21,7 @@ import com.green.member.service.LoginAction;
 import com.green.member.service.MemberJoin;
 import com.green.member.service.MemberUpdate;
 import com.green.member.service.MemberUpdateForm;
+import com.green.member.service.NewLoginAction;
 import com.green.member.service.PasswdChange;
 import com.green.member.service.PasswdChangeForm;
 import com.green.member.service.Withdrawal;
@@ -202,6 +203,25 @@ public class Controller extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		// 새창 로그인폼
+		else if (command.equals("/NewLoginForm.do")) {
+			forward = new ActionForward();
+			forward.setRedirect(true);
+			forward.setPath("./member/newLoginForm.jsp");
+		}
+		
+		// 새창 로그인
+		else if (command.equals("/NewLoginAction.do")) {
+			try {
+				action = new NewLoginAction();
+				action.execute(request, response);
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		
 	

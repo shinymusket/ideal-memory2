@@ -110,6 +110,20 @@
 	
 	recCount(); // 처음 시작했을 때 실행되도록 해당 함수 호출
 	
+	// 로그인 클릭
+	$("#newLogin").click(function(){
+		var ww = 400; // 띄울 창의 넓이
+		var wh = 250; // 띄울 창의 높이
+		
+		// 새창의 중앙 좌표
+		var top = (screen.availHeight-wh)/2;
+		var left = (screen.availWidth-ww)/2;
+		// 새창 띄움
+		window.open("/practice01/NewLoginForm.do", "window", "width="+ww+", height="+wh+", top="+top+", left="+left+", left="+left+", toolbar=no, menubar=no, scrollbars=no, resizalbe=no")
+	});
+	
+	
+	
 	})
 </script>
 </body>
