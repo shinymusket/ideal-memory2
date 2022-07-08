@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>${ section }-${ content.board_subject }</title>
+<script src="./jQuery/jquery-3.6.0.js" type="text/javascript"></script>
 </head>
 <body>
 	<div>
@@ -57,7 +58,59 @@
 				#${ content.board_no } <span class="w3-center w3-xlarge w3-text-blue">${ content.board_subject }</span>
 			</div>
 			<article class="w3-border w3-large w3-padding">${ content.board_content }</article>
+			<div>
+				<div class="w3-border w3-center w3-padding">
+					<c:if test="${ id == null }">
+						추천 기능은 <button type="button" id="newLogin"><b class="w3-text-blue">로그인</b></button> 후 사용 가능합니다.<br />
+						<i class="fa fa-heart" style="font-size:16px;color:red"></i>
+						<span class="rec_count"></span>					
+					</c:if>
+					<c:if test="${ id != null }">
+						<button class="w3-button w3-black w3-round" id="rec_update">
+							<i class="fa fa-heart" style="font-size:16px;color:red"></i>
+							&nbsp;<span class="rec_count"></span>
+						</button> 
+					</c:if>
+				</div>
+			</div>
 		</div>
 	</div>
+	
+<script type="text/javascript">
+	$(function(){
+		// 추천버튼 클릭시(추천 추가 또는 추천 제거)
+		$("#rec_update").click(function(){
+			$.ajax({
+				url: "/practice01/RecUpdate.do",
+				type: "POST",
+				data: {
+					no : ${content.board_no},
+					id : '${id}'
+				},
+				success : function () {
+					recCount();
+				},
+			})
+		})
+
+	
+	// 게시글 추천 수 
+	function recCount() {
+		$.ajax({
+			url : "/practice01/RecCount.do",
+			type : "POST",
+			data : {
+				no : ${content.board_no}
+			},
+			success : function (count) {
+				$(".rec_count").html(count);		
+			},
+		})
+	};
+	
+	recCount(); // 처음 시작했을 때 실행되도록 해당 함수 호출
+	
+	})
+</script>
 </body>
 </html>

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.green.board.service.BoardContent;
 import com.green.board.service.BoardList;
 import com.green.board.service.BoardWrite;
+import com.green.board.service.RecCount;
+import com.green.board.service.RecUpdate;
 import com.green.member.service.Action;
 import com.green.member.service.ActionForward;
 import com.green.member.service.LogOut;
@@ -181,9 +183,28 @@ public class Controller extends HttpServlet {
 			}
 		}
 		
+		// 추천수 업데이트
+		else if (command.equals("/RecUpdate.do")) {
+			try {
+				action = new RecUpdate();
+				action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 추천수 검색
+		else if (command.equals("/RecCount.do")) {
+			try {
+				action = new RecCount();
+				action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
-		
+	
 		// 페이지 이동
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 이동일 경우

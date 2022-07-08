@@ -142,5 +142,60 @@ public class BoardDAO {
 		return dto;
 	}
 	
+	// 게시글 추천여부 검사
+	public int recCheck(Map<String, Object> m) {
+		int result = 0;
+		try {
+			session = getSession();
+			result = session.selectOne("board.rec_check", m);
+			
+		} catch(Exception e) {
+			System.out.println("recCheck 에러 : " + e);
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+	
+	// 게시글 추천
+	public void recUpdate(Map<String, Object> m) {
+		try {
+			session = getSession();
+			session.insert("board.rec_update", m);
+			session.commit();
+			
+		} catch(Exception e) {
+			System.out.println("recUpdate 에러 " + e);
+			e.printStackTrace();
+		}
+	}
+	
+	// 게시글 추천 제거
+	public void recDelete(Map<String, Object> m) {
+		try {
+			session = getSession();
+			session.insert("board.rec_delete", m);
+			session.commit();
+			
+		} catch(Exception e) {
+			System.out.println("recDelete 에러 " + e);
+			e.printStackTrace();
+		}
+	}
+	
+	// 게시글 추천수
+	public int recCount(int no) {
+		int count = 0;
+		try {
+			session = getSession();
+			count = session.selectOne("board.rec_count", no);
+			
+		} catch(Exception e) {
+			System.out.println("recCount 에러 : " + e);
+			e.printStackTrace();
+		}
+			
+		return count;
+	}
 	
 }

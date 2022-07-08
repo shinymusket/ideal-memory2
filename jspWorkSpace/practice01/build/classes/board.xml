@@ -62,4 +62,24 @@
 		select * from ex_board where board_no = #{no} 	
  	</select>
  	
+ 	<!-- 동일 게시글 추천 여부 검색 -->
+ 	<select id="rec_check" parameterType="map" resultType="int">
+ 		select count(*) from ex_rec where board_no = #{no} and rec_id = #{id}
+ 	</select>
+ 	
+ 	<!-- 게시글 추천 -->
+ 	<insert id="rec_update" parameterType="map">
+ 		insert into ex_rec values(#{no}, #{id})
+ 	</insert>
+ 	
+ 	<!-- 게시글 추천 취소 -->
+ 	<delete id="rec_delete" parameterType="map">
+		delete from ex_rec where board_no = #{no} and rec_id = #{id} 	
+ 	</delete>
+ 	
+ 	<!-- 게시글 추천수 -->
+ 	<select id="rec_count" parameterType="int" resultType="int">
+ 		select count(*) from ex_rec where board_no = #{no}
+ 	</select>
+
 </mapper>
