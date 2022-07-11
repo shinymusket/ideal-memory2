@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.green.board.service.BoardContent;
+import com.green.board.service.BoardDelete;
 import com.green.board.service.BoardList;
 import com.green.board.service.BoardUpdate;
 import com.green.board.service.BoardUpdateForm;
@@ -268,6 +269,15 @@ public class Controller extends HttpServlet {
 			}
 		}
 		
+		// 게시판 글 삭제
+		else if (command.equals("/BoardDelete.do")) {
+			try {
+				action = new BoardDelete();
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 	

@@ -211,4 +211,16 @@ public class BoardDAO {
 		
 	}
 	
+	// 게시판 글 삭제
+	public void boardDelete(int no) {
+		try {
+			session = getSession();
+			session.delete("board.board_delete", no);
+			session.commit();
+		} catch(Exception e) {
+			System.out.println("boardDelete 에러 : " + e);
+			e.printStackTrace();
+		}
+	}
+	
 }

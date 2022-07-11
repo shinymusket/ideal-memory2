@@ -31,16 +31,16 @@
 			</c:if>
 			<!-- 로그인 하였을때 -->
 			<c:if test="${ id != null }">
-				<button type="button" class="w3-bar-item w3-button w3-border" onClick="location.href='/practice01/BoardWriteForm.do?section=${ section }'">
+				<button type="button" class="w3-bar-item w3-button w3-border" onclick="location.href='/practice01/BoardWriteForm.do?section=${ section }'">
 					<i class="fa fa-pencil-square-o"></i> 새 글 쓰기
 				</button>
 			</c:if>
 			<!--작성자 일때  -->
 			<c:if test="${ content.id == id }">
-				<button type="button" class="w3-bar-item w3-button w3-border" onClick="location.href='/practice01/BoardUpdateForm.do?section=${ section }&no=${ content.board_no }&num=${ num }'">
+				<button type="button" class="w3-bar-item w3-button w3-border" onclick="location.href='/practice01/BoardUpdateForm.do?section=${ section }&no=${ content.board_no }&num=${ num }'">
 					<i class="fa fa-exchange"></i> 글 수정
 				</button>
-				<button type="button" class="w3-bar-item w3-button w3-border">
+				<button type="button" class="w3-bar-item w3-button w3-border" id="boardDelete">
 					<i class="fa fa-remove"></i> 글 삭제
 				</button>
 			</c:if>
@@ -196,6 +196,14 @@
 			 })
 		 }
 		 getReply();
+		 
+		 $("#boardDelete").click(function() {
+			var result = confirm("게시글을 삭제하시겠습니까?");
+			if (result) {
+				location.href = '/practice01/BoardDelete.do?section=${param.section}&num=${param.num}&no=${content.board_no}';
+			}
+			 
+		 });
 	
 })
 </script>

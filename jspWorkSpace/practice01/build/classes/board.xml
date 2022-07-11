@@ -87,4 +87,10 @@
 		update ex_board set board_subject = #{board_subject}, board_content = #{board_content} where board_no = #{board_no}
  	</update>
 
+	<!-- 게시글 삭제 -->
+	<delete id="board_delete" parameterType="int">
+		delete from ex_board where board_no = #{no}
+	</delete>
+	
+
 </mapper>
