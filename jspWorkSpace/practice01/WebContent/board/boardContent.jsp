@@ -37,7 +37,7 @@
 			</c:if>
 			<!--작성자 일때  -->
 			<c:if test="${ content.id == id }">
-				<button type="button" class="w3-bar-item w3-button w3-border" onClick="">
+				<button type="button" class="w3-bar-item w3-button w3-border" onClick="location.href='/practice01/BoardUpdateForm.do?section=${ section }&no=${ content.board_no }&num=${ num }'">
 					<i class="fa fa-exchange"></i> 글 수정
 				</button>
 				<button type="button" class="w3-bar-item w3-button w3-border">
@@ -73,6 +73,22 @@
 					</c:if>
 				</div>
 			</div>
+			<div class="w3-border w3-padding">댓글</div>
+			<div class="w3-border w3-padding">
+				<c:if test="${ id == null }">
+					<textarea rows="5" cols="50" class="w3-input w3-border newLogin" readonly="readonly">로그인 후 댓글 달기</textarea>				
+				</c:if>
+				<c:if test="${ id != null }">
+					<i class="fa fa-user w3-padding-16"></i> ${id}
+					<form>
+						<input type="hidden" name="no" id="no" value="${content.board_no}">
+						<input type="hidden" name="id" id="id" value="${id}">
+						<textarea rows="5" cols="50" class="w3-input w3-border" placeholder="댓글 작성" name="reply_content" id="reply_content"></textarea>
+						<input type="button" class="w3-button w3-border" id="reply_btn" value="댓글 등록">
+					</form>
+				</c:if>
+			</div>
+			<div id="replyList"></div>
 		</div>
 	</div>
 	
@@ -123,8 +139,65 @@
 	});
 	
 	
+		 // 댓글 입력
+	$("#reply_btn").click(function(){
+		if($("#reply_content").val().trim() === "") {
+			alert("댓글을 입력하세요.");
+			$("#reply_content").val("").focus();	
+		}else{
+			$.ajax({
+				url : "/practice01/ReplyWriteAction.do",
+				type : "POST",
+				data :  {
+					no : $("#no").val(),
+					id : $("#id").val(),
+					reply_content : $("#reply_content").val()
+				},
+				success: function () {
+					alert("댓글 등록 완료");
+					$("#reply_content").val("");
+					getReply();
+				},
+			})
+		}	
+	});
+		 
+		 // 댓글 리스트
+		 function getReply() {
+			 $.ajax({
+				 url : "/practice01/GetReply.do", // 요청 url
+				 type : "POST",	// post 방식
+				 data : {
+					 board_no : ${content.board_no} // board_no의 값을 넘겨줌
+				 },
+				 success : function (json) { // 성공하였을 경우
+					 json = json.replace(/\n/gi, "\\r\\n"); // 개행 문자 대체
+					 $("#replyList").text(""); // 댓글리스트 영역 초기화
+					 var obj = JSON.parse(json); // service 클래스로부터 전달된 문자열 파싱
+					 var replyList = obj.replyList; // replyList는 전달된 json의 키값을 의미.
+					 var output = ""; // 댓글 목록을 누적하여 보여주기 위한 변수
+					 for (var i = 0; i < replyList.length; i++) { // 반복문을 통해 output에 누적
+						 output += "<div class='w3-border w3-padding'>";
+						 for (var j = 0; j < replyList[i].length; j++) {
+							 var reply = replyList[i][j];
+							 if (j === 0) {
+								 output += "<i class='fa fa-user'></i>&nbsp;&nbsp;" + reply.id + "&nbsp;&nbsp;";
+							 } else if (j === 1) {
+								 output += "&nbsp;&nbsp;<i class='fa fa-calendar'></i>&nbsp;&nbsp;" + reply.reply_date;
+							 } else if (j === 2) {
+								 output += "<pre>" + reply.reply_content + "</pre></div>";
+							 }
+						 };
+						 
+					 };
+					 $("#replyList").html(output); // replyList 영역에 output 출력
+					 $(".reply_count").html(i);
+				 } 
+			 })
+		 }
+		 getReply();
 	
-	})
+})
 </script>
 </body>
 </html>

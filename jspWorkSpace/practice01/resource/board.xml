@@ -81,5 +81,10 @@
  	<select id="rec_count" parameterType="int" resultType="int">
  		select count(*) from ex_rec where board_no = #{no}
  	</select>
+ 	
+ 	<!-- 게시글 수정 -->
+ 	<update id="board_update" parameterType="map">
+		update ex_board set board_subject = #{board_subject}, board_content = #{board_content} where board_no = #{board_no}
+ 	</update>
 
 </mapper>

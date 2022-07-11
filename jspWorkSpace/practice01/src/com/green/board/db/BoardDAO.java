@@ -198,4 +198,17 @@ public class BoardDAO {
 		return count;
 	}
 	
+	// 게시판 글 수정
+	public void boardUpdate(Map<String, Object> m) {
+		try {
+			session = getSession();
+			session.update("board.board_update", m);
+			session.commit();
+		} catch(Exception e) {
+			System.out.println("boardUpdate 에러 : " + e);
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

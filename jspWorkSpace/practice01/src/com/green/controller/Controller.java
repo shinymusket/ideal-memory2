@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.green.board.service.BoardContent;
 import com.green.board.service.BoardList;
+import com.green.board.service.BoardUpdate;
+import com.green.board.service.BoardUpdateForm;
 import com.green.board.service.BoardWrite;
 import com.green.board.service.RecCount;
 import com.green.board.service.RecUpdate;
@@ -25,6 +27,8 @@ import com.green.member.service.NewLoginAction;
 import com.green.member.service.PasswdChange;
 import com.green.member.service.PasswdChangeForm;
 import com.green.member.service.Withdrawal;
+import com.green.reply.service.GetReply;
+import com.green.reply.service.ReplyWriteAction;
 
 
 @WebServlet("*.do")
@@ -216,6 +220,48 @@ public class Controller extends HttpServlet {
 			try {
 				action = new NewLoginAction();
 				action.execute(request, response);
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 댓글 등록
+		else if (command.equals("/ReplyWriteAction.do")) {
+			try {
+				action =  new ReplyWriteAction();
+				action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		// 댓글 목록
+		else if (command.equals("/GetReply.do")) {
+			try {
+				action =  new GetReply();
+				action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 게시판 수정 폼
+		else if (command.equals("/BoardUpdateForm.do")) {
+			try {
+				action = new BoardUpdateForm();
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 게시판 수정
+		else if (command.equals("/BoardUpdate.do")) {
+			try {
+				action = new BoardUpdate();
+				forward = action.execute(request, response);
 				
 			} catch(Exception e) {
 				e.printStackTrace();

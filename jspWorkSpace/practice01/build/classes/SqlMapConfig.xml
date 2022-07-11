@@ -5,6 +5,7 @@
 	<typeAliases>
 		<typeAlias type="com.green.member.db.MemberDTO" alias="memberDTO"/>
 		<typeAlias type="com.green.board.db.BoardDTO" alias="boardDTO"/>
+		<typeAlias type="com.green.reply.db.ReplyDTO" alias="replyDTO"/>	
 	</typeAliases>
 	
 	<environments default="development">
@@ -22,5 +23,6 @@
 	<mappers>
 		<mapper resource="member.xml"/>
 		<mapper resource="board.xml"/>
+		<mapper resource="reply.xml"/>
 	</mappers>
 </configuration>
