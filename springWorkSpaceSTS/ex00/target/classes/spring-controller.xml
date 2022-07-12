@@ -13,10 +13,20 @@
 		<property name="authService" ref="authService"/>	
 	</bean>
 	
-	<bean class="spring.controller.LogoutController"></bean>
+	<bean class="spring.controller.LogoutController">
+	</bean>
 	
 	<bean class="spring.controller.ChangePwdController">
 		<property name="changePasswordService" ref="changePwdSvc"/>
 	</bean>
 	
+	<bean class="spring.controller.MemberListController">
+		<property name="dao" ref="dao"/>	
+	</bean>
+	
+	<bean class="spring.controller.MemberDetailController">
+		<property name="dao" ref="dao"/>
+	</bean>
+	
+	<bean class="spring.controller.CommonExceptionHandler"/>
 </beans>
